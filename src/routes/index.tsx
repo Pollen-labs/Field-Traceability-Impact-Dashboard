@@ -66,7 +66,7 @@ function HomeComponent() {
   
   // Construct the dynamic description string using the full paragraph
   const breakdownDescription = formattedTotalWeight
-    ? `Thanks to our partners, approximately ${formattedTotalWeight}  kg of waste has been sorted by recyclers across all locations. This breakdown gives a closer look at what types of plastic are making it into the recycling stream—from PET to LDPE—helping us understand what's actually being recovered and reused.`
+    ? `Thanks to our partners, approximately ${formattedTotalWeight}  kg of waste has been sorted by recyclers across all locations. This breakdown gives a closer look at what types of plastic are making it into the recycling stream, from PET to LDPE, helping us understand what's actually being recovered and reused.`
     : "While all waste has been collected through the efforts of our partner fishermen, the total sorted weight is being calculated. This chart will break down sorted plastic by specific material types..." // Adjusted fallback text
 
   return (
@@ -155,7 +155,7 @@ function HomeComponent() {
         <p className='font-bold text-3xl md:text-5xl tracking-tight'>{collabSectionTitle}</p>
         <p className='w-full text-lg md-text-lg font-extralight leading-tight md:leading-tight'>{collabSectionDescription}</p>
         <Link to="/about" >
-          <Button className='px-6'>Learn more about how it works</Button>        
+          <Button className='px-6'>Learn more about how the hub works</Button>        
         </Link>
         <Link 
           to="/products/$id" 

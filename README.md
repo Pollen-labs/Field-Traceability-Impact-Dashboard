@@ -28,7 +28,7 @@ This dashboard uses the Pollen Labs blokFlow technology to help Enaleia’s envi
 #### Clone the repository
 
 ```bash
-  git clone git@github.com:Enaleia/dashboard.git
+ git clone git@github.com:Pollen-labs/BFlow.git
 ```
 
 #### Install dependencies
@@ -48,4 +48,4 @@ Open [http://localhost:3001](http://localhost:3001) with your browser to see the
 ----
 
 Copyright © 2024-2025 Pollen Lab.
-BlokFlow™️ technology is an intellectual property of Pollen Labs.
+BFlow™️ technology is an intellectual property of Pollen Labs.
