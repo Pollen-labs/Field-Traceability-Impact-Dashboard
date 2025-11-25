@@ -1,6 +1,5 @@
 import { createFileRoute, Link } from '@tanstack/react-router'
 import { useState } from 'react'
-import { useMediaQuery } from '@/hooks/ui/useMediaQuery'
 import { PageHero } from '@/components/global/PageHero'
 import { StatsBar } from '@/components/global/StatsBar'
 import { ActivityMap } from '../components/maps/ActivityMap'
@@ -8,11 +7,9 @@ import { CollectionChart } from '@/components/charts/CollectionChart'
 import { CustomChartLegend } from '@/components/charts/CustomChartLegend'
 import { MaterialBreakdownChart } from '@/components/charts/MaterialBreakdownChart'
 import { useHomeMaterialBreakdown } from '@/hooks/api/useHomeMaterialBreakdown'
-import { CircleArrowDown } from 'lucide-react'
 import { Button } from "@/components/ui/button"
 import { BackToTopButton } from '@/components/global/BackToTopButton'
 import { homePageTexts, dateChoices } from '@/config/texts'
-import { DESKTOP_BREAKPOINT } from '@/config/constants'
 
 /**
  * Creates a route for the home page using TanStack Router
@@ -49,8 +46,6 @@ function HomeComponent() {
 
   // State for chart date range filter with default value "All time"
   const [selectedChartDates, setSelectedChartDates] = useState('All time')
-    // Responsive layout handling based on screen size
-  const isDesktop = useMediaQuery(DESKTOP_BREAKPOINT)
 
   // Fetch material breakdown data
   const { 
@@ -64,23 +59,32 @@ function HomeComponent() {
     ? new Intl.NumberFormat().format(materialData.totalWeight)
     : null;
   
-  // Construct the dynamic description string using the full paragraph
+  // Construct the dynamic description with bolded weight
   const breakdownDescription = formattedTotalWeight
-    ? `Thanks to our partners, approximately ${formattedTotalWeight}  kg of waste has been sorted by recyclers across all locations. This breakdown gives a closer look at what types of plastic are making it into the recycling stream, from PET to LDPE, helping us understand what's actually being recovered and reused.`
+    ? (
+      <>
+        Thanks to our partners, exactly{" "}
+        <span className="font-bold">
+          {formattedTotalWeight}kg
+        </span>
+        {" "}of waste has been sorted by recyclers across all locations. This breakdown gives a live look at what types of plastic are making it into the recycling stream, from PET to LDPE, helping us understand what's actually being recovered and reused.
+      </>
+    )
     : "While all waste has been collected through the efforts of our partner fishermen, the total sorted weight is being calculated. This chart will break down sorted plastic by specific material types..." // Adjusted fallback text
 
   return (
-    <main className='flex flex-col justify-center items-center gap-8 m-auto pb-16 md:pb-24 md:pt-8 lg:pt-16 max-w-[1500px]'>
+    <main className='flex flex-col justify-center items-center gap-8 m-auto pb-16 md:pb-24 md:pt-8 lg:pt-16 max-w-[1440px]'>
       {/* Hero Section - Displays page title, description and scrolling helper */}
       <section className='flex flex-col items-center gap-6'>
         <PageHero title={heroTitle} description={heroDescription}/>
-        <div 
-          className='flex flex-row justify-center items-center gap-2 font-normal text-ocean cursor-pointer'
-          onClick={() => window.scrollTo({ top: isDesktop ? 1950: 2300, behavior: 'smooth'})}
+        <Link 
+          to="/products/$id" 
+          params={{ id: '4767' }}
         >
-          <CircleArrowDown color="#2985D0" strokeWidth={2}/>
-          <p>Explore the data</p>
-        </div>
+          <Button className='px-8 mb-8'>
+            See sustainable tracing in action
+          </Button>
+        </Link>
       </section>
       {/* Impact Visualization Section - Shows key stats and activity map */}
       <section className='overflow-hidden border border-primary rounded-3xl'>
@@ -141,7 +145,7 @@ function HomeComponent() {
         ) : materialData ? (
           <MaterialBreakdownChart 
             data={materialData} 
-            title="All sorted materials so far"
+            title="All sorted materials till this very minute"
             description={breakdownDescription}
           />
         ) : (
@@ -155,14 +159,7 @@ function HomeComponent() {
         <p className='font-bold text-3xl md:text-5xl tracking-tight'>{collabSectionTitle}</p>
         <p className='w-full text-lg md-text-lg font-extralight leading-tight md:leading-tight'>{collabSectionDescription}</p>
         <Link to="/about" >
-          <Button className='px-6'>Learn more about how the hub works</Button>        
-        </Link>
-        <Link 
-          to="/products/$id" 
-          params={{ id: '4767' }}
-          className="font-bold text-base"
-        >
-          See product tracing example
+          <Button className='px-8'>Learn more about how the hub works</Button>        
         </Link>
         {/* Button to scroll back to top of page */}
         <BackToTopButton />

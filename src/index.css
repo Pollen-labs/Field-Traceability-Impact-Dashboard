@@ -5,12 +5,12 @@
 body {
   font-family: 'DM Sans Variable', sans-serif;
   color: #0D0D0D;
-  padding: 2rem 12rem;
+  padding: 2rem 2.5rem; /* ~32px top/bottom, 40px left/right on large screens */
 }
 
 @media (max-width: 1024px) {
   body {
-    padding: 1rem 5rem;
+    padding: 1.5rem 2.5rem;
   }
 }
 

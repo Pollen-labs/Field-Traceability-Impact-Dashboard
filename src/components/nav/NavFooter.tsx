@@ -11,7 +11,7 @@ import { ArrowUpRight } from 'lucide-react'
  */
 const FooterNavLinks = () => {
   return (
-    <div className="flex flex-col items-center gap-4 text-base font-extralight text-center md:flex-row md:flex-wrap md:justify-center md:gap-x-8 md:gap-y-2 xl:flex-row xl:flex-nowrap xl:items-start xl:justify-end xl:text-right">
+    <div className="flex flex-col items-center gap-4 text-base font-extralight text-center lg:flex-row lg:flex-nowrap lg:justify-end lg:gap-10 lg:text-right">
       <Link
         to="/locations"
         activeProps={{
@@ -79,10 +79,10 @@ const FooterNavLinks = () => {
  */
 const NavFooter = () => {
 	return (
-		<footer className="px-8 pb-16">
-      <div className="m-auto flex max-w-[1500px] flex-col gap-10">
-        {/* Top area: logo and navigation (side-by-side only on very wide screens) */}
-        <div className="flex flex-col items-center gap-8 text-center md:gap-10 xl:flex-row xl:items-start xl:justify-between">
+		<footer className="px-8 pt-12 pb-16">
+      <div className="m-auto flex max-w-[1440px] flex-col gap-10">
+        {/* Top area: logo and navigation (side-by-side on large screens and above) */}
+        <div className="flex flex-col items-center gap-8 text-center md:gap-10 lg:flex-row lg:items-start lg:justify-between">
           {/* Logo with subtitle keeps consistent branding in the footer */}
           <NavLogo showSubtitle={true} />
           {/* Navigation links: full-width below logo on smaller screens, beside on wide */}

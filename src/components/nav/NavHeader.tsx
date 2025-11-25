@@ -30,7 +30,7 @@ const NavHeader = () => {
       </nav>
       
       {/* Desktop Navigation - Only visible on large screens (lg breakpoint and above) */}
-      <nav className='hidden lg:flex justify-between items-center m-auto border border-softBlack rounded-full px-14 py-4 max-w-[1500px]'>
+      <nav className='hidden lg:flex justify-between items-center m-auto border border-softBlack rounded-full px-14 py-4 max-w-[1440px]'>
           {/* Logo component - same as mobile but in desktop context */}
           <NavLogo showSubtitle={false}/>
           {/* Horizontal navigation links for desktop view */}
