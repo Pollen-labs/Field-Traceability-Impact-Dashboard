@@ -180,7 +180,7 @@ export const activitesChartLegendDescriptions = {
  */
 export const homePageTexts = {
   heroTitle: 'Working together with fishers for a sustainable marine ecosystem',
-  heroDescription: 'Welcome to the ENALEIA Hub—a dashboard that tracks the environmental efforts and impacts made by our community and partners. Our mission is to create a sustainable marine ecosystem by promoting circular and social economy solutions.',
+  heroDescription: 'Welcome to the ENALEIA Hub — Conceptualized and built by Pollen Labs to help Enaleia and its supply-chain partners present their environmental impact with clarity and transparency through this live dashboard. It reflects our shared belief in strengthening marine ecosystems through circular and social economy practices.',
   impactSectionTitle: 'Our impact at a glance',
   impactSectionDescription: 'Since 2023, we’ve partnered with local fishers to promote a healthier marine environment. Alongside our professional training programs, we empower fishers to be active stewards of the ocean by incentivizing sustainable practices and marine conservation efforts.',
   wasteChartTitle: 'Waste collection insights',
@@ -210,7 +210,7 @@ export const locationsPageTexts = {
  */
 export const vesselsPageTexts = {
   heroTitle: 'Vessels and fishers on the frontline of the marine plastic pollution crisis',
-  heroDescription: 'We collaborate with fishing communities and other collectors across the Mediterranean, empowering them to adopt sustainable fishing practices while incentivizing the collection of plastic bycatch. By bringing this waste back to port, fishers play a crucial role in addressing marine plastic pollution and protecting the health of our oceans.'
+  heroDescription: 'We collaborate with fishing communities and other collectors across the Mediterranean incentivizing them to collect plastic bycatch. By bringing this waste back to port, fishers play a crucial role in addressing marine plastic pollution and protecting the health of the Mediterranean.'
 }
 
 /**
@@ -222,13 +222,13 @@ export const vesselsPageTexts = {
  * - Collaboration section encouraging participation
  */
 export const aboutPageTexts = {
-  heroTitle: 'Transparency. Accountability. Open source data on a distributed network.',
-  heroDescription: 'Enaleia Hub is a step toward sustainable innovation and fostering trust in the data that drives ocean clean-up efforts.',
+  heroTitle: 'Transparency & accountability on a decentralized network.',
+  heroDescription: 'Enaleia Hub is a step toward a sustainable Mediterranean sea while fostering trust in the data that drives our clean-up efforts.',
   hubFlowSectionTitle: 'How does Enaleia Hub work?',
-  hubFlowSectionDescription: 'The Hub is a data visualization and traceability platform built to streamline operational workflows for Enaleia. By leveraging blockchain technology, it enhances transparency and efficiency in tracking and managing environmental efforts. The Hub integrates multiple interfaces, including a backend to store data and a custom connector to support the internal operations team in submitting data as attestations. It empowers all stakeholders—whether part of Enaleia or external partners—to contribute to data submission seamlessly.',
-  collabSectionTitle: 'Collaboration for impact',
-  collabSectionDescription1: 'This first release has been developed by Pollen Labs to accelerate collaboration and innovation.  Our vision extends beyond Enaleia, as this platform aims to inspire similar organizations to adopt public blockchain technology, aligning with Ethereum’s values. While designed for decentralized applications, Ethereum also offers powerful enterprise solutions, providing instant data transparency and accountability. We envision that any enterprise striving for transparency can easily adopt and replicate this solution—because ultimately, it’s for the environment we all share.',
-  collabSectionDescription2: 'There are many ways to collaborate and strengthen this solution. We invite you to join our conversation.'
+  hubFlowSectionDescription: 'The Hub provide transparent data visualization and traceability while also streamlining operational workflows for Enaleia and its supply-chain partners. Powered by BFlow technology which leverages blockchain to enhances transparency and efficiency in tracking and managing environmental efforts, the Hub integrates multiple interfaces to support ourselves and our partners in submitting permanent attestations. It empowers us and our community to contribute data to a true sustainable future.',
+  collabSectionTitle: 'Pollen Labs for impact',
+  collabSectionDescription1: '**BFlow, the technology which powers Enaleia hub, was entirely conceptualized and developed by Pollen Labs.** BFlow aim to improve transparency of supply chains through decentralized data capture.  Our vision extends beyond this project as we envision enterprises striving in transparency through the adoption of sustainable technologies',
+  collabSectionDescription2: '<strong>We invite mission-aligned enterprises to <a href="mailto:contact@pollenlabs.org" style="text-decoration: underline; font-weight: 500;">contact us</a> and explore how we can build impactful, transparent solutions together.</strong>'
 }
 
 /**
@@ -242,22 +242,22 @@ export const aboutCardInfo = [
   {
     image: 'turtle',
     title: 'Log waste collection at the port',
-    description: 'Using the mobile app, each port coordinator records and submits data directly to the blockchain. The mobile app operates as a distributed node, with each user having their own account (wallet) to interact securely with the blockchain.<br/><br/>The mobile app is currently in testing phase. If you are interested to learn more about our code, please visit the <a href="https://github.com/Enaleia" target="_blank" rel="noopener noreferrer" style="font-weight: bold">repository</a>.',
+    description: 'Using the mobile app, each port coordinator employed by Enaleia records and submits data directly to the blockchain. The mobile app operates as a distributed node, with each user having their own account (wallet) to interact securely with the blockchain.<br/><br/> If you are interested to learn more about Pollen Labs technology, please visit the <a href="https://github.com/Pollen-labs/BFlow" target="_blank" rel="noopener noreferrer" style="font-weight: bold">repository</a>.',
   },
   {
     image: 'fish',
-    title: 'Tag physical items with unique tracking codes',
-    description: 'Waste collected by the fisher community is sent to recyclers with a unique 6-digit tag for traceability.<br/><br/> As the waste is processed, it is tracked through each stage to its final destination. Enaleia supports a circular economy — learn more about product tracing with the example below:<br></br><a href="/products/4767" style="font-weight: bold">Kayak by Enaleia x Nelo</a>',
+    title: 'Tag physical items with tracking codes',
+    description: 'Waste collected by the fisher community is sent to recyclers with a QR tag for traceability.<br/><br/> As the waste is processed, it is tracked through each stages till its final destination. <br></br><a href="/products/4767" style="font-weight: bold">View a transparent product tracing in action with the Nelo X Enaleia Kayak.</a>',
   },
   {
     image: 'octopus',
-    title: 'Immutably attest to collected data',
-    description: 'Each data submission by port coordinators is stored on the blockchain in a human-readable format. This ensures that future marine scientists or environmentalists can reference historical data for research.<br/><br/> We use <a href="https://attest.org/" target="_blank" rel="noopener noreferrer"style="font-weight: bold">Ethereum Attestation Service</a> to certify the authenticity of this data. How to read the data we attested? Learn more about our <a href="https://optimism.easscan.org/schema/view/0x1ac0face1fc9aabf1c2f9b46d3a8decb51ca0c3d06ef1f68a85d04c90820975b" target="_blank" rel="noopener noreferrer" style="font-weight: bold">attestation schema</a>.',
+    title: 'Independant partners contribution',
+    description: 'After collection, the marine plastic is routed through our independant processing partners, namely recyclers and manufacturers. When these partners also submit attestations to the blockchain they reinforce the trust and accountability through their decentralized contribution. <br><br>Anyone can track materials throughout the supply chain and act as verifiers, with all data visualizations backed by attestations that are publicly verifiable through the <a href="https://optimism.easscan.org/schema/view/0x1ac0face1fc9aabf1c2f9b46d3a8decb51ca0c3d06ef1f68a85d04c90820975b" target="_blank" rel="noopener noreferrer" style="font-weight: bold">blockchain explorer</a>.',
   },
   {
     image: 'crab',
     title: 'Demonstrate transparency',
-    description: 'Our public dashboard is a critical tool for showcasing transparency and highlighting the impact of our efforts.<br/><br/> All data visualizations are backed by attestations, and public users can verify them via the <a href="https://optimism.easscan.org/schema/view/0x1ac0face1fc9aabf1c2f9b46d3a8decb51ca0c3d06ef1f68a85d04c90820975b" target="_blank" rel="noopener noreferrer" style="font-weight: bold">blockchain explorer</a>.',
+    description: 'The public dashboard is a critical tool for showcasing transparency and highlighting the impact of our efforts.  Additionnaly each data submission is stored on the blockchain in a human-readable format. This also ensures that future marine scientists or environmentalists can reference historical data for research.<br/><br/> The hub use <a href="https://attest.org/" target="_blank" rel="noopener noreferrer"style="font-weight: bold">Ethereum Attestation Service</a> to store this data permanently. <br/><br/> How to read the data we attested? Discover Enaleia Hub <a href="https://optimism.easscan.org/schema/view/0x1ac0face1fc9aabf1c2f9b46d3a8decb51ca0c3d06ef1f68a85d04c90820975b" target="_blank" rel="noopener noreferrer" style="font-weight: bold">attestation schema</a>.<br/><br/> ',
   }
 ]
 
@@ -269,8 +269,12 @@ export const aboutCardInfo = [
  */
 export const aboutPageLinks = [
   {
-    text: 'Propose idea in Github forum',
-    url: 'https://github.com/orgs/Enaleia/discussions/categories/ideas'
+    text: 'Pollen Labs',
+    url: 'https://pollenlabs.org'
+  },
+  {
+    text: 'Github',
+    url: 'https://github.com/Pollen-labs/BFlow'
   },
   {
     text: 'Chat with us on Discord',

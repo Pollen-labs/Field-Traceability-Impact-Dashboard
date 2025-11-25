@@ -1,61 +1,117 @@
 import { NavLogo } from './NavLogo'
-import { NavLinks } from './NavLinks'
+import { Link } from '@tanstack/react-router'
+import { ArrowUpRight } from 'lucide-react'
 
 /**
- * GithubLink - Component for the GitHub repository link
- * 
- * Renders a link to the project's GitHub repository with the GitHub logo.
- * The link opens in a new tab with proper security attributes.
+ * FooterNavLinks - Navigation links specific to the footer layout
+ *
+ * Renders internal navigation links plus external GitHub and Attestations links.
+ * Uses flexbox wrapping so links reflow across lines as the viewport narrows,
+ * matching the responsive behaviour shown in the footer mockups.
  */
-const GithubLink = () => {
+const FooterNavLinks = () => {
   return (
-    <a 
-      href='https://github.com/Enaleia'
-      target="_blank"
-      rel="noopener noreferrer"
-      className="group"
-    >
-      <img 
-        className="size-8 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" 
-        src={"/logos/gitHub_logo.png"} 
-        alt="github icon" 
-        loading="lazy" 
-      />
-    </a>
+    <div className="flex flex-col items-center gap-4 text-base font-extralight text-center lg:flex-row lg:flex-nowrap lg:justify-end lg:gap-10 lg:text-right">
+      <Link
+        to="/locations"
+        activeProps={{
+          className: 'font-bold',
+        }}
+      >
+        Locations
+      </Link>
+      <Link
+        to="/vessels"
+        activeProps={{
+          className: 'font-bold',
+        }}
+      >
+        Collectors
+      </Link>
+      <Link
+        to="/about"
+        activeProps={{
+          className: 'font-bold',
+        }}
+      >
+        About
+      </Link>
+      <a
+        href="https://github.com/Pollen-labs/BFlow"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="group"
+      >
+        <div className="flex items-center justify-center gap-1 xl:justify-end">
+          <p>Github</p>
+          <ArrowUpRight
+            strokeWidth={1}
+            className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+          />
+        </div>
+      </a>
+      <a
+        href="https://optimism.easscan.org/schema/view/0x1ac0face1fc9aabf1c2f9b46d3a8decb51ca0c3d06ef1f68a85d04c90820975b"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="group"
+      >
+        <div className="flex items-center justify-center gap-1 xl:justify-end">
+          <p>Attestations</p>
+          <ArrowUpRight
+            strokeWidth={1}
+            className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+          />
+        </div>
+      </a>
+    </div>
   )
 }
 
 /**
  * NavFooter - Footer navigation component for the application
- * 
- * Provides responsive footer navigation with different layouts for mobile and desktop:
- * - Mobile: Shows logo with subtitle and GitHub link
- * - Desktop: Shows logo with subtitle, navigation links, and GitHub link
- * 
- * Similar to NavHeader, this component uses Tailwind's responsive classes
- * for conditional rendering based on screen size.
+ *
+ * Provides a responsive footer that:
+ * - Shows the logo with subtitle on the left
+ * - Displays navigation links that wrap across lines as space becomes constrained
+ * - Includes a text GitHub link with external arrow icon in the footer menu
+ * - Shows a Pollen Labs credit row with logo at the bottom
  */
 const NavFooter = () => {
 	return (
-		<>
-      {/* Mobile Footer Navigation - Only visible on small screens (below lg breakpoint) */}
-      <nav className='lg:hidden flex justify-between items-center m-auto px-8 pb-16'>
-        {/* Logo component - showing subtitle in the footer for branding */}
-        <NavLogo showSubtitle={true}/>
-        {/* GitHub repository link */}
-        <GithubLink />
-      </nav>
+		<footer className="px-8 pt-12 pb-16">
+      <div className="m-auto flex max-w-[1440px] flex-col gap-10">
+        {/* Top area: logo and navigation (side-by-side on large screens and above) */}
+        <div className="flex flex-col items-center gap-8 text-center md:gap-10 lg:flex-row lg:items-start lg:justify-between">
+          {/* Logo with subtitle keeps consistent branding in the footer */}
+          <NavLogo showSubtitle={true} />
+          {/* Navigation links: full-width below logo on smaller screens, beside on wide */}
+          <div className="mt-2 w-full xl:mt-0 xl:max-w-[60%]">
+            <FooterNavLinks />
+          </div>
+        </div>
 
-      {/* Desktop Footer Navigation - Only visible on large screens (lg breakpoint and above) */}
-      <nav className='hidden lg:flex justify-between items-center m-auto pb-16 max-w-[1500px]'>
-        {/* Logo component with subtitle */}
-        <NavLogo showSubtitle={true}/>
-        {/* Navigation links - same as in header for consistent navigation */}
-        <NavLinks />
-        {/* GitHub repository link */}
-        <GithubLink />
-      </nav>
-		</>
+        {/* Bottom row: Pollen Labs credit */}
+        <div className="flex flex-col items-center gap-2 border-t border-softBlack pt-4 text-center md:flex-row md:items-center md:justify-between md:text-left">
+          <p className="text-sm font-extralight">
+            Conceptualised and built by
+          </p>
+          <a
+            href="https://pollenlabs.org"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group"
+          >
+            <img
+              src="/logos/pollen_labs.svg"
+              alt="Pollen Labs logo"
+              className="h-14 w-auto transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+              loading="lazy"
+            />
+          </a>
+        </div>
+      </div>
+    </footer>
 	);
 };
 

@@ -37,7 +37,7 @@ function VesselsComponent() {
   const isDesktop = useMediaQuery(DESKTOP_BREAKPOINT)
 
   return (
-    <main className='flex flex-col justify-center items-center gap-8 md:gap-16 m-auto md:pt-8 lg:pt-16 max-w-[1500px]'>
+    <main className='flex flex-col justify-center items-center gap-8 md:gap-16 m-auto md:pt-8 lg:pt-16 max-w-[1440px]'>
       <PageHero title={heroTitle} description={heroDescription} />
       <StatsBar pageName='Vessels'/>
 

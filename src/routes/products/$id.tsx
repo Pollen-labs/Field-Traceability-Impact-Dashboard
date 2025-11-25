@@ -117,7 +117,7 @@ function ProductDetailComponent() {
   // --- End Define Mobile Card Renderer ---
 
   return (
-    <main className='flex flex-col justify-center items-center gap-8 m-auto pb-16 md:pb-24 md:pt-8 lg:pt-16 max-w-[1500px]'>
+    <main className='flex flex-col justify-center items-center gap-8 m-auto pb-16 md:pb-24 md:pt-8 lg:pt-16 max-w-[1440px]'>
       {/* Product Header - Displays product name and primary information */} 
       <PageHeading productId={id} dataCategory="Heading"/>
       {/* Traceability Section - Shows interactive map of product journey */}

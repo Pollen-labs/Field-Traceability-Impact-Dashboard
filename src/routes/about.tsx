@@ -4,6 +4,7 @@ import { Card } from '@/components/about/Card'
 import { BackToTopButton } from '@/components/global/BackToTopButton'
 import { ArrowUpRight } from 'lucide-react'
 import { aboutPageTexts, aboutCardInfo, aboutPageLinks } from '@/config/texts'
+import { formatTextWithBold } from '@/utils/formatTextWithBold'
 
 /**
  * Creates a route for the about page using TanStack Router
@@ -35,7 +36,7 @@ function AboutComponent() {
   } = aboutPageTexts
 
   return (
-    <main className='flex flex-col justify-center items-center gap-8 m-auto pb-16 lg:pb-24 md:pt-8 lg:pt-16 max-w-[1500px]'>      
+    <main className='flex flex-col justify-center items-center gap-8 m-auto pb-16 lg:pb-24 md:pt-8 lg:pt-16 max-w-[1440px]'>      
       {/* Hero Section - Displays page title, description and hero image */}
       <section className='flex flex-col items-center gap-10'>
         <PageHero title={heroTitle} description={heroDescription}/>
@@ -48,7 +49,7 @@ function AboutComponent() {
       {/* Hub Flow Section - Explains the material collection and processing workflow */}
       <section className='text-center my-10 md:my-24'>
         <h2 className='w-full font-bold text-4xl md:text-6xl tracking-tight px-16 pb-6'>{hubFlowSectionTitle}</h2>
-        <p className='w-full font-extralight text-base md:text-lg tracking-tight leading-tight md:leading-tight md:px-12'>{hubFlowSectionDescription}</p>
+        <p className='w-full font-extralight text-base md:text-lg tracking-tight leading-tight md:leading-tight md:px-12'>{formatTextWithBold(hubFlowSectionDescription)}</p>
         {/* Card grid showing the step-by-step process */}
         <div className='flex flex-col lg:flex-row gap-4 md:justify-between pt-8'>
           {aboutCardInfo.map(({ image, title, description }) => (
@@ -67,9 +68,22 @@ function AboutComponent() {
         />
         <div className='absolute inset-0 flex flex-col lg:flex-row items-start justify-start lg:justify-between p-4 pt-12 md:p-10'>
           <div className='lg:w-[75%]'>
-            <h2 className='font-bold text-4xl md:text-6xl tracking-tight'>{collabSectionTitle}</h2>
-            <p className='font-extralight text-base tracking-tight leading-tight md:leading-tight pt-8'>{collabSectionDescription1}</p>
-            <p className='font-extralight text-base tracking-tight leading-tight md:leading-tight py-4'>{collabSectionDescription2}</p>
+            <h2 className='flex items-center gap-4 font-bold text-4xl md:text-6xl tracking-tight'>
+              <img
+                src="/logos/pollen_labs_logo.png"
+                alt="Pollen Labs logo"
+                className="h-16 w-auto"
+                loading="lazy"
+              />
+              <span>{collabSectionTitle}</span>
+            </h2>
+            <p className='font-extralight text-base tracking-tight leading-tight md:leading-tight pt-8'>
+              {formatTextWithBold(collabSectionDescription1)}
+            </p>
+            <p
+              className='font-extralight text-base tracking-tight leading-tight md:leading-tight py-4'
+              dangerouslySetInnerHTML={{ __html: collabSectionDescription2 }}
+            />
           </div>
           <div className='flex flex-col gap-6 pt-8 lg:pt-60 lg:w-[22%]'>
             {aboutPageLinks.map(({ text, url }) => (
