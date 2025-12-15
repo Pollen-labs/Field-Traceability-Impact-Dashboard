@@ -16,6 +16,7 @@ import {
 import { usePagination } from "@/hooks/ui/usePagination"
 import { ShowingDisplay, TablePaginator } from "@/components/tables/TablePaginator"
 import { ArrowUpDown } from "lucide-react"
+import { TableSkeleton } from "@/components/global/TableSkeleton"
 
 /**
  * Interface for the ActionsTable component props
@@ -73,23 +74,21 @@ const ActionsTable = ({ pageName, partnerType }: ActionsTableProps) => {
 	} = usePagination(processedRecords, itemsPerPage)
   
   // Handle loading and error states with placeholders
-  if (isPending || error) {
+  if (isPending) {
+    return <TableSkeleton rowCount={5} columnCount={4} />
+  }
+
+  if (error) {
     return (
       <article className="w-full lg:h-[598px] flex flex-col justify-center items-center text-center text-lg px-10">
-        {isPending ? (
-          <p>Loading table data...</p>
-        ) : (
-          <>
-            <p>😕 sorry!</p>
-            <p>We are not able to build the {pageName} table at this time.</p>
-            <img 
-              src="/illustrations/dolphin.svg" 
-              alt="dolphin illustration" 
-              className="w-[300px] h-[300px]"
-              loading="lazy"
-            />
-          </>
-        )}
+        <p>😕 sorry!</p>
+        <p>We are not able to build the {pageName} table at this time.</p>
+        <img 
+          src="/illustrations/dolphin.svg" 
+          alt="dolphin illustration" 
+          className="w-[300px] h-[300px]"
+          loading="lazy"
+        />
       </article>
     )
   }

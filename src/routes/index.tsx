@@ -12,6 +12,7 @@ import { BackToTopButton } from '@/components/global/BackToTopButton'
 import { homePageTexts, dateChoices } from '@/config/texts'
 import { useIntersectionObserver } from '@/hooks/ui/useIntersectionObserver'
 import { clsx } from 'clsx'
+import { ChartSkeleton } from '@/components/global/ChartSkeleton'
 
 /**
  * Creates a route for the home page using TanStack Router
@@ -194,9 +195,9 @@ function HomeComponent() {
       {/* --- New Section for Material Breakdown Chart --- */}
       <section className='w-full border border-primary rounded-3xl overflow-hidden p-6 md:p-12'> 
         {isLoadingMaterials ? (
-          <div>Loading material breakdown...</div>
+          <ChartSkeleton />
         ) : materialError ? (
-          <div>Error loading material breakdown: {materialError.message}</div>
+          <div className="text-center text-lg py-8">Error loading material breakdown: {materialError.message}</div>
         ) : materialData ? (
           <MaterialBreakdownChart 
             data={materialData} 
@@ -204,7 +205,7 @@ function HomeComponent() {
             description={breakdownDescription}
           />
         ) : (
-          <div>No material breakdown data available.</div>
+          <div className="text-center text-lg py-8">No material breakdown data available.</div>
         )}
       </section>
       {/* --- End New Section --- */}

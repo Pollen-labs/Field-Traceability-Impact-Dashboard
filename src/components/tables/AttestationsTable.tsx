@@ -12,6 +12,7 @@ import {
 } from "@/components/ui/table"
 import { ShowingDisplay, TablePaginator } from "@/components/tables/TablePaginator"
 import { Link, ArrowUpRight, ArrowUpDown } from 'lucide-react'
+import { TableSkeleton } from "@/components/global/TableSkeleton"
 
 // --- Type Definitions ---
 // Defines the structure for configuring table columns
@@ -143,12 +144,7 @@ const AttestationsTable = <T extends { id: string | number, timestamp?: string }
 
   // --- Loading/Error/Empty State Rendering ---
   if (isLoading) {
-    return (
-      <article className="w-full min-h-[400px] lg:min-h-[598px] flex flex-col justify-center items-center text-center text-lg px-10">
-        <p>Loading attestation data...</p>
-        <img src="/illustrations/dolphin.svg" alt="loading illustration" className="w-[300px] h-[300px] opacity-50" loading="lazy" />
-      </article>
-    );
+    return <TableSkeleton rowCount={5} columnCount={columns.length} />;
   }
 
   if (error) {

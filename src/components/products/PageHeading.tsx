@@ -13,6 +13,7 @@ import { ProductData } from '@/types'
 import { ArrowUpRight } from 'lucide-react'
 import { useIntersectionObserver } from '@/hooks/ui/useIntersectionObserver'
 import { clsx } from 'clsx'
+import { ProductHeadingSkeleton } from '@/components/global/ProductHeadingSkeleton'
 
 interface PageHeadingProps {
   productId: string               // Unique identifier for the product
@@ -35,16 +36,17 @@ const PageHeading = ({ productId, dataCategory }: PageHeadingProps) => {
 
   /*
   * Loading/Error state view
-  * Shows loading message or error with dolphin illustration
+  * Shows skeleton loader for seamless loading experience
   */
-  if (isPending || error) {
+  if (isPending) {
+    return <ProductHeadingSkeleton />
+  }
+
+  if (error) {
     return (
       <article className="w-full lg:h-[598px] flex flex-col justify-center items-center text-center text-lg px-10">
-          <>
-            {isPending && <p>Loading product data...</p>}
-            {error && <p>Sorry! We are not able to show the product information at this time.</p>}
-            <img src="/illustrations/dolphin.svg" alt="dolphin illustration" className="w-[300px] h-[300px]"/>
-          </>
+        <p>Sorry! We are not able to show the product information at this time.</p>
+        <img src="/illustrations/dolphin.svg" alt="dolphin illustration" className="w-[300px] h-[300px]"/>
       </article>
     )
   }

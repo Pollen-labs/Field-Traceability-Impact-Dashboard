@@ -148,6 +148,29 @@ body {
 }
 
 @layer utilities {
+  /* Skeleton/Shimmer Animation */
+  @keyframes shimmer {
+    0% {
+      background-position: -1000px 0;
+    }
+    100% {
+      background-position: 1000px 0;
+    }
+  }
+
+  .animate-shimmer {
+    background: linear-gradient(
+      90deg,
+      hsl(var(--sand)) 0%,
+      hsl(var(--sand)) 40%,
+      hsl(var(--darkSand)) 50%,
+      hsl(var(--sand)) 60%,
+      hsl(var(--sand)) 100%
+    );
+    background-size: 1000px 100%;
+    animation: shimmer 2s infinite;
+  }
+
   /* Typography Animation Keyframes */
   @keyframes fade-slide-up {
     from {
