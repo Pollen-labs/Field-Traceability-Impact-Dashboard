@@ -137,7 +137,7 @@ function VesselDetailComponent() {
   // --- End Define Mobile Card Renderer ---
 
   return (
-    <main className='flex flex-col justify-center items-center gap-8 m-auto pt-0 pb-16 lg:pb-32 md:pt-8 lg:pt-16 max-w-[1440px]'>
+    <main className='flex flex-col justify-center items-center gap-8 m-auto pt-0 pb-16 lg:pb-32 md:pt-8 lg:pt-16 max-w-[1440px] xl:max-w-[1600px] 2xl:max-w-[1920px]'>
       {/* Vessel Header - Displays vessel name, country, port, type and collector ID */}      
       <DetailPageHeading name={name} country={country} registered_port={port} type={type} collector_id={collector_identity} />
       

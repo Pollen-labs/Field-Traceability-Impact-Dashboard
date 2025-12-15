@@ -33,7 +33,7 @@ const StatsSkeleton = ({ count = 6, gridColumns = 'lg:grid-cols-4' }: StatsSkele
   return (
     <article 
       className={clsx(
-        `grid grid-cols-1 ${finalGridColumns} gap-8 px-16 md:px-32 lg:px-4 py-8 max-w-7xl mx-auto`
+        `grid grid-cols-1 ${finalGridColumns} gap-8 px-16 md:px-32 lg:px-4 py-8 max-w-7xl xl:max-w-[1400px] 2xl:max-w-[1600px] mx-auto`
       )}
     >
       {Array.from({ length: count }).map((_, index) => (

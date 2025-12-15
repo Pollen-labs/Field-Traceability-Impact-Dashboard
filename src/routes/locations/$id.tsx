@@ -203,7 +203,7 @@ function LocationDetailComponent() {
   })
 
   return (
-    <main className="flex flex-col justify-center items-center gap-8 m-auto pt-0 pb-16 lg:pb-32 md:pt-8 lg:pt-16 max-w-[1440px]">
+    <main className="flex flex-col justify-center items-center gap-8 m-auto pt-0 pb-16 lg:pb-32 md:pt-8 lg:pt-16 max-w-[1440px] xl:max-w-[1600px] 2xl:max-w-[1920px]">
       {/* Location Header - Displays location name, country, coordinates, type and blockchain addresses */}
       <DetailPageHeading
         name={name}

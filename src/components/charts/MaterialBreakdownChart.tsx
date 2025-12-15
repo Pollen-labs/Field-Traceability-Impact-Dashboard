@@ -242,7 +242,7 @@ export const MaterialBreakdownChart: React.FC<MaterialBreakdownChartProps> = ({ 
       {/* Outer container for padding */}
       <div className="self-stretch py-8 px-4 md:px-12">
         {/* Legend Layout: 2-col grid mobile, centered flex wrap desktop */}
-        <div className="max-w-screen-lg mx-auto grid grid-cols-2 justify-items-start md:flex md:flex-wrap md:justify-center gap-x-12 gap-y-12"> 
+        <div className="max-w-screen-lg xl:max-w-[1400px] 2xl:max-w-[1600px] mx-auto grid grid-cols-2 justify-items-start md:flex md:flex-wrap md:justify-center gap-x-12 gap-y-12"> 
           {allMaterialsForLegend.map((item: MaterialBreakdownItem) => {
             const configKey = getMaterialConfigKey(item.material);
             const colorEntry = MaterialsChartConfig[configKey as keyof typeof MaterialsChartConfig];

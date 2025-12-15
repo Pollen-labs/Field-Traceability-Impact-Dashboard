@@ -50,7 +50,7 @@ function AboutComponent() {
   })
 
   return (
-    <main className='flex flex-col justify-center items-center gap-8 m-auto pb-16 lg:pb-24 md:pt-8 lg:pt-16 max-w-[1440px]'>      
+    <main className='flex flex-col justify-center items-center gap-8 m-auto pb-16 lg:pb-24 md:pt-8 lg:pt-16 max-w-[1440px] xl:max-w-[1600px] 2xl:max-w-[1920px]'>      
       {/* Hero Section - Displays page title, description and hero image */}
       <section className='flex flex-col items-center gap-10'>
         <PageHero title={heroTitle} description={heroDescription}/>

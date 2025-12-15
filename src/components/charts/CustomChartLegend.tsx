@@ -38,7 +38,7 @@ const CustomChartLegend = ({ category }: ChartLegendProps) => {
   return (
     <article className="w-full flex justify-center p-8 md:px-28 lg:py-0">
       {/* Responsive grid layout with different column counts based on screen size */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 max-w-6xl">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 max-w-6xl xl:max-w-7xl 2xl:max-w-[1400px]">
         {/* Map through legend items and create entry for each */}
         {Object.entries(legendInfo).map(([type, description]) => (
           <div key={type} className="flex items-start gap-2">

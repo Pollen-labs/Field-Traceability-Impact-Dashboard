@@ -58,7 +58,7 @@ const CollectionChart = ({ pageName, partnerId, timeRange }: CollectionChartProp
 
   return (
     // Scrollable container for horizontal overflow on smaller screens
-    <ScrollArea className="max-w-[350px] md:max-w-[650px] lg:max-w-[1500px]">
+    <ScrollArea className="max-w-[350px] md:max-w-[650px] lg:max-w-[1500px] xl:max-w-[1700px] 2xl:max-w-[1900px]">
       <Card className="border-none shadow-none"> 
         <CardContent className="md:p-12">  
           {/* Container component for chart with consistent sizing */} 

@@ -80,7 +80,7 @@ const FooterNavLinks = () => {
 const NavFooter = () => {
 	return (
 		<footer className="px-8 pt-12 pb-16">
-      <div className="m-auto flex max-w-[1440px] flex-col gap-10">
+      <div className="m-auto flex max-w-[1440px] xl:max-w-[1600px] 2xl:max-w-[1920px] flex-col gap-10">
         {/* Top area: logo and navigation (side-by-side on large screens and above) */}
         <div className="flex flex-col items-center gap-8 text-center md:gap-10 lg:flex-row lg:items-start lg:justify-between">
           {/* Logo with subtitle keeps consistent branding in the footer */}

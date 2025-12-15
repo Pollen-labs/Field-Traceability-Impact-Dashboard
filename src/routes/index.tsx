@@ -107,9 +107,9 @@ function HomeComponent() {
   })
 
   return (
-    <main className='flex flex-col justify-center items-center gap-8 m-auto pb-16 md:pb-24 md:pt-8 lg:pt-16 max-w-[1440px]'>
+    <main className='flex flex-col justify-center items-center gap-8 m-auto pb-16 md:pb-24 md:pt-8 lg:pt-16 max-w-[1440px] xl:max-w-[1600px] 2xl:max-w-[1920px]'>
       {/* Hero Section - Displays page title, description and scrolling helper */}
-      <section className='flex flex-col items-center gap-6'>
+      <section className='flex flex-col items-center gap-6 w-full max-w-[1200px] xl:max-w-[1400px] 2xl:max-w-[1600px]'>
         <PageHero title={heroTitle} description={heroDescription}/>
         <Link 
           to="/products/$id" 
@@ -127,7 +127,7 @@ function HomeComponent() {
         </Link>
       </section>
       {/* Impact Visualization Section - Shows key stats and activity map */}
-      <section className='overflow-hidden border border-primary rounded-3xl'>
+      <section className='overflow-hidden border border-primary rounded-3xl w-full max-w-[1440px] xl:max-w-[1600px] 2xl:max-w-[1920px]'>
         {/* Hero image with overlay text */}
         <article className='relative w-full pb-8'>
           <img 

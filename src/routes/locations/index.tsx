@@ -42,7 +42,7 @@ function LocationsComponent() {
   const isDesktop = useMediaQuery(DESKTOP_BREAKPOINT)
 
   return (
-    <main className='flex flex-col justify-center items-center gap-8 md:gap-16 m-auto md:pt-8 lg:pt-16 max-w-[1440px]'>
+    <main className='flex flex-col justify-center items-center gap-8 md:gap-16 m-auto md:pt-8 lg:pt-16 max-w-[1440px] xl:max-w-[1600px] 2xl:max-w-[1920px]'>
       <PageHero title={heroTitle} description={heroDescription} /> 
       <StatsBar pageName='Locations'/>
 

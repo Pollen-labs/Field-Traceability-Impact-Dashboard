@@ -104,7 +104,7 @@ const StatsBar = ({ pageName, partnerId }: StatsBarProps) => {
       ref={containerRef}
       data-stats-container
       className={clsx(
-        `grid grid-cols-1 ${gridColumns} gap-8 px-16 md:px-32 lg:px-4 py-8 max-w-7xl mx-auto`
+        `grid grid-cols-1 ${gridColumns} gap-8 px-16 md:px-32 lg:px-4 py-8 max-w-7xl xl:max-w-[1400px] 2xl:max-w-[1600px] mx-auto`
       )}
     >
       {pageStats.map((stat: StatItem, index: number) => {

@@ -33,7 +33,7 @@ const ChartSkeleton = () => {
      
       {/* Legend skeleton */}
       <div className="self-stretch py-8 px-4 md:px-12">
-        <div className="max-w-screen-lg mx-auto grid grid-cols-2 md:flex md:flex-wrap md:justify-center gap-x-12 gap-y-12">
+        <div className="max-w-screen-lg xl:max-w-[1400px] 2xl:max-w-[1600px] mx-auto grid grid-cols-2 md:flex md:flex-wrap md:justify-center gap-x-12 gap-y-12">
           {Array.from({ length: 8 }).map((_, index) => (
             <div key={index} className="flex items-start gap-2">
               <Skeleton className="w-3 h-6 rounded-full" />
