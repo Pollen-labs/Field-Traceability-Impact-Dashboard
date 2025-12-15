@@ -152,7 +152,7 @@ function HomeComponent() {
         <ActivityMap pageName='Home'/>
       </section>
       {/* Waste Collection Data Section - Displays charts with time filtering */}
-      <section className='flex flex-col border border-primary rounded-3xl pb-fluid-sm'>
+      <section className='flex flex-col border border-primary rounded-3xl pb-fluid-sm overflow-hidden w-full max-w-[1440px] xl:max-w-[1600px] 2xl:max-w-[1920px]'>
         {/* Chart header with title, description and time range filters */}
         <article className='px-4 pt-fluid-2xl pb-fluid-lg md:px-fluid-md text-center'>
           <p 

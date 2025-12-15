@@ -42,13 +42,13 @@ const CustomChartLegend = ({ category }: ChartLegendProps) => {
         {/* Map through legend items and create entry for each */}
         {Object.entries(legendInfo).map(([type, description]) => (
           <div key={type} className="flex items-start gap-2">
-            {/* Color indicator circle matching chart colors */}
-            <div className="flex-shrink-0">
+            {/* Color indicator circle matching chart colors - aligned with first line of text */}
+            <div className="flex-shrink-0 self-start mt-0.5">
               <div className={`h-6 w-6 rounded-full bg-${getCssClassName(type)}`}></div>
             </div>
-            <div>
+            <div className="flex-1">
               {/* Category name with camelCase formatting (e.g., "mixedPlastic" → "Mixed plastic") */}
-              <h3 className="text-fluid-lg font-bold">{formatCamelCaseString(type)}</h3>
+              <h3 className="text-fluid-lg font-bold leading-tight">{formatCamelCaseString(type)}</h3>
               {/* Detailed description of the category */}
               <p className="text-fluid-sm font-extralight leading-tight">{description}</p>
             </div>

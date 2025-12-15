@@ -68,25 +68,41 @@ const StatsBar = ({ pageName, partnerId }: StatsBarProps) => {
   // Use intersection observer if it triggered, otherwise use fallback
   const isVisible = isContainerVisible || shouldAnimate
 
-  // Determine grid column layout based on number of stats
-  // Provides different column configurations for various stat counts
-  const gridColumns = {
-    3: 'lg:grid-cols-3',
-    4: 'lg:grid-cols-4',
-    5: 'lg:grid-cols-5',
-    6: 'lg:grid-cols-6' // Homepage: 6 stats in one row
-  }[pageStats.length] || 'lg:grid-cols-4'
-
-  // Render loading skeleton or error state if data is not available
-  if (isPending) {
-    // Use the same gridColumns logic for skeleton, defaulting to 6 for homepage
-    const skeletonCount = pageStats.length || 6
-    const skeletonGridColumns = {
+  // Dynamic grid column layout based on number of stats
+  // Logic:
+  // - 3-5 stats: Use that many columns (single row)
+  // - 6 stats: Use 3 columns (wraps to 2 rows: 3x2)
+  // - More than 6 stats: Use 2 columns (wraps to multiple rows)
+  const getGridColumns = (count: number): string => {
+    // Map count to Tailwind grid column classes
+    // Using explicit class names so Tailwind JIT can detect them
+    const gridColumnMap: Record<number, string> = {
+      1: 'lg:grid-cols-1',
+      2: 'lg:grid-cols-2',
       3: 'lg:grid-cols-3',
       4: 'lg:grid-cols-4',
       5: 'lg:grid-cols-5',
-      6: 'lg:grid-cols-6' // Homepage: 6 stats in one row
-    }[skeletonCount] || 'lg:grid-cols-4'
+    }
+    
+    if (count <= 5) {
+      // For 3, 4, or 5 stats: use that many columns in a single row
+      return gridColumnMap[count] || 'lg:grid-cols-3'
+    } else if (count === 6) {
+      // For 6 stats: use 3 columns, which wraps to 2 rows (3x2)
+      return 'lg:grid-cols-3'
+    } else {
+      // For more than 6 stats: use 2 columns, wraps to multiple rows
+      return 'lg:grid-cols-2'
+    }
+  }
+
+  const gridColumns = getGridColumns(pageStats.length)
+
+  // Render loading skeleton or error state if data is not available
+  if (isPending) {
+    // Use the same gridColumns logic for skeleton
+    const skeletonCount = pageStats.length || 6
+    const skeletonGridColumns = getGridColumns(skeletonCount)
     return <StatsSkeleton count={skeletonCount} gridColumns={skeletonGridColumns} />
   }
 
@@ -104,7 +120,7 @@ const StatsBar = ({ pageName, partnerId }: StatsBarProps) => {
       ref={containerRef}
       data-stats-container
       className={clsx(
-        `grid grid-cols-1 ${gridColumns} gap-8 px-16 md:px-32 lg:px-4 py-8 max-w-7xl xl:max-w-[1400px] 2xl:max-w-[1600px] mx-auto`
+        `grid grid-cols-2 ${gridColumns} gap-4 md:gap-8 px-4 md:px-16 lg:px-4 py-8 max-w-7xl xl:max-w-[1400px] 2xl:max-w-[1600px] mx-auto`
       )}
     >
       {pageStats.map((stat: StatItem, index: number) => {
@@ -115,8 +131,8 @@ const StatsBar = ({ pageName, partnerId }: StatsBarProps) => {
         return (
           <div
             key={stat.key}
-            // Add bottom border for mobile, remove for larger screens except last item
-            className={`flex flex-col items-center text-center pb-6 lg:pb-0 ${index !== pageStats.length - 1 ? 'border-b lg:border-b-0' : ''} border-darkSand`}
+            // Remove borders on mobile (2 columns), keep clean layout
+            className="flex flex-col items-center text-center pb-4 md:pb-6 lg:pb-0"
           >
             {/* Stat title */}
             <p className="text-fluid-lg font-extralight">{stat.title}</p>

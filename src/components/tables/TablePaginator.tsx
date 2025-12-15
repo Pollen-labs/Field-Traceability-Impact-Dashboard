@@ -146,7 +146,7 @@ const TablePaginator = ({
 	)
 
 	return (
-		<Pagination className="pt-10 md:pt-2">
+		<Pagination className="pt-fluid-xl pb-fluid-md">
 			<PaginationContent>
         {/* Previous page button */}
 				<PaginationItem className="hover:cursor-pointer">

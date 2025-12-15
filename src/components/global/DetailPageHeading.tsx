@@ -62,9 +62,9 @@ const DetailPageHeading = ({ name, country, coordinates, registered_port, type, 
           {/* Page type indicator with back navigation */}
           <Link
             to={`/${pageType}`}
-            className="flex items-center gap-1 text-sm md:text-sm font-light group"
+            className="flex items-center gap-1 text-fluid-sm font-light group"
           >
-            <ChevronLeft className="w-4 h-4 transition-transform group-hover:-translate-x-0.5" />
+            <ChevronLeft className="w-4 h-4 transition-transform group-hover:-translate-x-0.5 flex-shrink-0" />
             <span>{coordinates ? 'Locations' : 'Collectors'}</span>
           </Link>
           {/* Location/Vessel name (main heading) with scroll-triggered animation */}
@@ -82,8 +82,8 @@ const DetailPageHeading = ({ name, country, coordinates, registered_port, type, 
           <div className='flex flex-col lg:flex-row items-start gap-0.5 lg:gap-4 font-light'>
             {/* Country with flag */}
             <div className='flex flex-row items-center gap-1'>
-              <img src={`/country-flags/${country}.svg`} alt={`${country} flag`} className='h-7 w-7'/>
-              <p>{country}</p>
+              <img src={`/country-flags/${country}.svg`} alt={`${country} flag`} className='h-7 w-7 flex-shrink-0'/>
+              <p className='text-fluid-sm'>{country}</p>
             </div>
 
             {/* Vertical separator (hidden on mobile) */}
@@ -99,14 +99,14 @@ const DetailPageHeading = ({ name, country, coordinates, registered_port, type, 
                 rel="noopener noreferrer" 
                 className='flex flex-row items-center gap-2 group'
               >
-                <img src='/data-icons/pin.svg' alt='pin icon' className='h-6 w-6'/>
+                <img src='/data-icons/pin.svg' alt='pin icon' className='h-6 w-6 flex-shrink-0'/>
                 {coordinates.length === 2 ?
                   <>
-                    <p>{coordinates[0]}, {coordinates[1]}</p>
-                    <ArrowUpRight strokeWidth={1} className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"/>
+                    <p className='text-fluid-sm'>{coordinates[0]}, {coordinates[1]}</p>
+                    <ArrowUpRight strokeWidth={1} className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 flex-shrink-0"/>
                   </>
                 :
-                  <p>coordinates not available</p>
+                  <p className='text-fluid-sm'>coordinates not available</p>
                 }
               </a>
             }
@@ -114,8 +114,8 @@ const DetailPageHeading = ({ name, country, coordinates, registered_port, type, 
             {/* Registered port (only for vessels) */}
             {registered_port && 
               <div className='flex flex-row items-center gap-2'>
-                <img src='/data-icons/pin.svg' alt='pin icon' className='h-6 w-6'/>
-                <p><span className='font-extralight'>Registered port:</span> {registered_port}</p>
+                <img src='/data-icons/pin.svg' alt='pin icon' className='h-6 w-6 flex-shrink-0'/>
+                <p className='text-fluid-sm'><span className='font-extralight'>Registered port:</span> {registered_port}</p>
               </div>
             }
 
@@ -127,7 +127,7 @@ const DetailPageHeading = ({ name, country, coordinates, registered_port, type, 
             {/* Blockchain wallet addresses (only for locations) */}
             {addresses &&
               <div className='flex flex-row items-start gap-2'>       
-                <img src='/data-icons/wallet.svg' alt='wallet icon' className='h-6 w-6'/>
+                <img src='/data-icons/wallet.svg' alt='wallet icon' className='h-6 w-6 flex-shrink-0'/>
                 <div className='grid grid-cols-2 md:grid-cols-3 gap-x-8 gap-y-1'>
                   {addresses.length ?
                     addresses.map((address, index) => (
@@ -136,13 +136,13 @@ const DetailPageHeading = ({ name, country, coordinates, registered_port, type, 
                         href={`https://optimism.easscan.org/address/${address}`}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className='flex flex-row gap-2 group'>
-                        <p>{address.slice(0, 6)}...{address.slice(-4)}</p>
-                        <ArrowUpRight strokeWidth={1} className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"/>
+                        className='flex flex-row gap-2 group items-center'>
+                        <p className='text-fluid-sm'>{address.slice(0, 6)}...{address.slice(-4)}</p>
+                        <ArrowUpRight strokeWidth={1} className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 flex-shrink-0"/>
                       </a>
                     )) 
                   :
-                    <p>address not available</p>
+                    <p className='text-fluid-sm'>address not available</p>
                   }
                 </div>
               </div>
@@ -151,8 +151,8 @@ const DetailPageHeading = ({ name, country, coordinates, registered_port, type, 
             {/* Collector ID (only for vessels) */}
             {collector_id && 
               <div className='flex flex-row items-center gap-2'>
-                <img src='/data-icons/id.svg' alt='ID card icon' className='h-6 w-6'/>
-                <p><span className='font-extralight'>Collector ID:</span> {collector_id}</p>
+                <img src='/data-icons/id.svg' alt='ID card icon' className='h-6 w-6 flex-shrink-0'/>
+                <p className='text-fluid-sm'><span className='font-extralight'>Collector ID:</span> {collector_id}</p>
               </div>
             }
           </div>
@@ -164,10 +164,10 @@ const DetailPageHeading = ({ name, country, coordinates, registered_port, type, 
           <img 
             src={`/partner-icons/${type.replace(/ /g, '_')}.svg`} 
             alt={`${type} icon`} 
-            className='h-16 w-16 md:h-28 md:w-28'
+            className='h-16 w-16 md:h-28 md:w-28 flex-shrink-0'
           />
           {/* Type label */}
-          <p className='text-center uppercase'>{type}</p>
+          <p className='text-center uppercase text-fluid-sm'>{type}</p>
         </div>
       </div>
     </section>

@@ -243,7 +243,7 @@ function LocationDetailComponent() {
               >
                 {statSubtitle}
               </h3>
-              <p className='font-extralight tracking-tight leading-tight'>{statDescription}</p>
+              <p className='font-extralight text-fluid-base tracking-tight leading-tight'>{statDescription}</p>
             </div>
           </>
         }
@@ -320,7 +320,7 @@ function LocationDetailComponent() {
         >
           Attestations
         </h2>
-        <p className="w-full md:w-[70%] font-extralight tracking-tight leading-tight md:leading-tight">
+        <p className="w-full md:w-[70%] font-extralight text-fluid-base tracking-tight leading-tight md:leading-tight">
           {attestationDescriptions[type]}
         </p>
         <Separator className="bg-softBlack my-1" />

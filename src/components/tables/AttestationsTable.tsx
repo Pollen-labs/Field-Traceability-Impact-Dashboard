@@ -195,7 +195,7 @@ const AttestationsTable = <T extends { id: string | number, timestamp?: string }
                                         <div className="text-fluid-xs font-light text-softBlack px-4 lg:px-6 py-2 flex items-center justify-between h-full">
                                             <span className="uppercase">{column.header}</span> {/* Make header uppercase */}
                                             {column.isSortable && (
-                                                <span className="ml-1">
+                                                <span className="ml-1 flex items-center">
                                                    <ArrowUpDown size={14} strokeWidth={2} className={`${sortConfig.key === column.id ? 'text-softBlack' : 'text-gray-400'}`} />
                                                 </span>
                                             )}
@@ -260,7 +260,7 @@ const AttestationsTable = <T extends { id: string | number, timestamp?: string }
 
         {/* --- Pagination Controls --- */}
         {needsPagination && (
-          <article className="flex flex-col justify-center items-center gap-4">
+          <article className="flex flex-col justify-center items-center gap-4 pt-fluid-lg">
             <TablePaginator
               needsPagination={needsPagination}
               currentPage={currentPage}

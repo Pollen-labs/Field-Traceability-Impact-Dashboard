@@ -3,7 +3,6 @@ import { useChartTicks } from "@/hooks/ui/useChartTicks"
 import { MaterialsChartConfig, ActivitiesChartConfig } from "@/config/charts"
 import { PageName, MaterialsChartRecord, ActivitiesChartRecord } from "@/types"
 import { Area, AreaChart, CartesianGrid, XAxis, YAxis } from "recharts"
-import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area"
 import { Card, CardContent } from "@/components/ui/card"
 import { ChartContainer, ChartTooltip, ChartTooltipContent } from "@/components/ui/chart"
 import { formatCamelCaseString } from "@/utils/camelCaseFormatter"
@@ -58,14 +57,15 @@ const CollectionChart = ({ pageName, partnerId, timeRange }: CollectionChartProp
 
   return (
     // Scrollable container for horizontal overflow on smaller screens
-    <ScrollArea className="max-w-[350px] md:max-w-[650px] lg:max-w-[1500px] xl:max-w-[1700px] 2xl:max-w-[1900px]">
-      <Card className="border-none shadow-none"> 
-        <CardContent className="p-fluid-sm md:p-fluid-lg">  
-          {/* Container component for chart with consistent sizing */} 
-          <ChartContainer 
-            config={chartConfig} 
-            className=" w-full min-h-[400px] max-h-[400px]"
-          >
+    <div className="w-full overflow-x-auto px-4 md:px-fluid-md">
+      <div className="w-full min-w-0 md:max-w-[650px] lg:max-w-[1500px] xl:max-w-[1700px] 2xl:max-w-[1900px] md:mx-auto">
+        <Card className="border-none shadow-none"> 
+          <CardContent className="p-fluid-sm md:p-fluid-lg">  
+            {/* Container component for chart with consistent sizing */} 
+            <ChartContainer 
+              config={chartConfig} 
+              className="w-full min-h-[400px] max-h-[400px]"
+            >
             {/* Loading state */}
             {isPending ? (
               <div className="w-full h-full text-fluid-lg">
@@ -87,7 +87,7 @@ const CollectionChart = ({ pageName, partnerId, timeRange }: CollectionChartProp
               <AreaChart
                 accessibilityLayer
                 data={records}
-                margin={{ right: 30 }}
+                margin={{ top: 10, right: 10, bottom: 10, left: 10 }}
               >
                 <CartesianGrid vertical={false} />
                 {/* X-axis with custom tick formatting based on time range */}
@@ -162,9 +162,8 @@ const CollectionChart = ({ pageName, partnerId, timeRange }: CollectionChartProp
           </ChartContainer>       
         </CardContent>
       </Card>
-      {/* Horizontal scrollbar for small screens */}
-      <ScrollBar orientation="horizontal" />
-    </ScrollArea>
+      </div>
+    </div>
   )
 }
 

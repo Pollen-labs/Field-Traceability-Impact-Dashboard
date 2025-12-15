@@ -150,7 +150,7 @@ function VesselDetailComponent() {
         {/* Additional contextual information about the statistics */}
         <div className='py-12 px-4 md:px-10 lg:px-20'>
           <h3 className='font-bold text-fluid-xl tracking-tight leading-tight px-12 pb-2'>{statSubtitle}</h3>
-          <p className='font-extralight tracking-tight leading-tight'>{statDescription}</p>
+          <p className='font-extralight text-fluid-base tracking-tight leading-tight'>{statDescription}</p>
         </div>
       </section>
 
@@ -204,7 +204,7 @@ function VesselDetailComponent() {
       {/* Attestations Section - Displays blockchain verification records */}
       <section className='flex flex-col gap-3 my-6 md:my-20 w-full md:w-[100%]'>
         <h2 className='font-bold text-fluid-4xl tracking-tight leading-tight'>Attestations</h2>
-        <p className='w-full md:w-[70%] font-extralight tracking-tight leading-tight'>{attestationDescriptions["Vessel"]}</p>
+        <p className='w-full md:w-[70%] font-extralight text-fluid-base tracking-tight leading-tight'>{attestationDescriptions["Vessel"]}</p>
         <Separator className='bg-softBlack my-1'/>
         <AttestationsTable
           data={attestationsData}

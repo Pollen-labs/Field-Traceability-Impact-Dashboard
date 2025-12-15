@@ -11,7 +11,7 @@ import { ArrowUpRight } from 'lucide-react'
  */
 const FooterNavLinks = () => {
   return (
-    <div className="flex flex-col items-center gap-4 text-base font-extralight text-center lg:flex-row lg:flex-nowrap lg:justify-end lg:gap-10 lg:text-right">
+    <div className="flex flex-col items-center gap-4 text-fluid-base font-extralight text-center lg:flex-row lg:flex-nowrap lg:justify-end lg:gap-10 lg:text-right">
       <Link
         to="/locations"
         activeProps={{
@@ -93,7 +93,7 @@ const NavFooter = () => {
 
         {/* Bottom row: Pollen Labs credit */}
         <div className="flex flex-col items-center gap-2 border-t border-softBlack pt-4 text-center md:flex-row md:items-center md:justify-between md:text-left">
-          <p className="text-sm font-extralight">
+          <p className="text-fluid-sm font-extralight">
             Conceptualised and built by
           </p>
           <a

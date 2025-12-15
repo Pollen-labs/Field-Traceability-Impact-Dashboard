@@ -114,22 +114,22 @@ const ActionsTable = ({ pageName, partnerType }: ActionsTableProps) => {
                   <>
                     {/* Country column with sort toggle */}
                     <TableHead className="p-0 w-[17%]">
-                      <div className="flex gap-2 text-xs font-light text-softBlack bg-sand px-8 py-2 border-y border-darkSand">
+                      <div className="flex items-center gap-2 text-fluid-xs font-light text-softBlack bg-sand px-8 py-2 border-y border-darkSand">
                         <p>COUNTRY</p>
-                        <div className="cursor-pointer" onClick={() => toggleSortCriteria('country')}>
+                        <div className="cursor-pointer flex items-center" onClick={() => toggleSortCriteria('country')}>
                           <ArrowUpDown size={14} />
                         </div>
                       </div>
                     </TableHead>
                     {/* Coordinates/port column - content depends on page type */}
                     <TableHead className="p-0 w-[23%]">
-                      <div className="text-xs font-light text-softBlack bg-sand px-8 py-2 border border-darkSand">
+                      <div className="text-fluid-xs font-light text-softBlack bg-sand px-8 py-2 border border-darkSand">
                         {pageName === 'Locations' ? "COORDINATES" : "REGISTERED PORT"}
                       </div>
                     </TableHead>
                     {/* Partner type column */}
                     <TableHead className="p-0 w-[17%]">
-                      <div className="text-xs font-light text-softBlack bg-sand px-8 py-2 border-y border-darkSand">
+                      <div className="text-fluid-xs font-light text-softBlack bg-sand px-8 py-2 border-y border-darkSand">
                         TYPE
                       </div>
                     </TableHead>
@@ -138,9 +138,9 @@ const ActionsTable = ({ pageName, partnerType }: ActionsTableProps) => {
 
                 {/* Actions count column with sort toggle - always visible */}
                 <TableHead className="p-0 w-[13%]">
-                  <div className="flex gap-2 text-xs font-light text-softBlack bg-sand p-4 md:px-8 py-1 md:py-2 border border-darkSand rounded-r-full">
+                  <div className="flex items-center gap-2 text-fluid-xs font-light text-softBlack bg-sand p-4 md:px-8 py-1 md:py-2 border border-darkSand rounded-r-full">
                     <p>ACTIONS</p>
-                    <div className="cursor-pointer" onClick={() => toggleSortCriteria('action_count')}>
+                    <div className="cursor-pointer flex items-center" onClick={() => toggleSortCriteria('action_count')}>
                       <ArrowUpDown size={14} />
                     </div>                
                   </div>
@@ -178,11 +178,11 @@ const ActionsTable = ({ pageName, partnerType }: ActionsTableProps) => {
                       <>
                         {/* Country cell with flag icon */}
                         <TableCell className="p-0 w-[17%]">
-                          <div className="mt-2 px-8 py-4 border-y border-darkSand flex gap-2 trucate group-hover:bg-sand transition-colors">
+                          <div className="mt-2 px-8 py-4 border-y border-darkSand flex items-center gap-2 trucate group-hover:bg-sand transition-colors">
                             <img 
                               src={`/country-flags/${country}.svg`} 
                               alt={`${country} flag`} 
-                              className="h-5 w-5"
+                              className="h-5 w-5 flex-shrink-0"
                               loading="lazy"
                             />
                             <span>{country}</span>
@@ -202,11 +202,11 @@ const ActionsTable = ({ pageName, partnerType }: ActionsTableProps) => {
                         </TableCell>}
                         {/* Partner type cell with icon */}
                         <TableCell className="p-0 w-[17%]">
-                          <div className="mt-2 px-8 py-4 border-y border-darkSand flex gap-2 truncate group-hover:bg-sand transition-colors">
+                          <div className="mt-2 px-8 py-4 border-y border-darkSand flex items-center gap-2 truncate group-hover:bg-sand transition-colors">
                             <img 
                               src={`/partner-icons/${type.replace(/ /g, '_')}.svg`} 
                               alt={`${type} icon`} 
-                              className="h-5 w-5"
+                              className="h-5 w-5 flex-shrink-0"
                               loading="lazy"
                             />
                             <span>{type}</span>
@@ -265,7 +265,7 @@ const ActionsTable = ({ pageName, partnerType }: ActionsTableProps) => {
  
       {/* Pagination controls - only displayed if needed */}
       {needsPagination && (
-        <article className="flex flex-col justify-center items-center gap-4">
+        <article className="flex flex-col justify-center items-center gap-4 pt-fluid-lg">
           {/* Page number buttons with prev/next controls */}
           <TablePaginator
             needsPagination={needsPagination}
