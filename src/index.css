@@ -206,4 +206,230 @@ body {
   .animate-on-scroll.visible {
     opacity: 1;
   }
+
+  /* Fluid Typography Utilities - Modular scale 1.25 */
+  /* Formula: clamp(min-size, preferred-size, max-size) */
+  /* Scale ratio: 1.25 between each size level */
+  /* Viewport range: 320px (mobile) to 1920px (large desktop) */
+  /* Text scales much larger on large desktop screens */
+  
+  .text-fluid-xs {
+    font-size: clamp(0.75rem, 0.5rem + 0.625vw, 1rem); /* 12px mobile → 16px desktop */
+  }
+
+  .text-fluid-sm {
+    font-size: clamp(0.875rem, 0.625rem + 0.78125vw, 1.25rem); /* 14px → 20px (1.25x) */
+  }
+
+  .text-fluid-base {
+    font-size: clamp(1rem, 0.75rem + 0.78125vw, 1.5625rem); /* 16px → 25px (1.25x) */
+  }
+
+  .text-fluid-lg {
+    font-size: clamp(1.125rem, 0.875rem + 0.78125vw, 1.953125rem); /* 18px → 31px (1.25x) */
+  }
+
+  .text-fluid-xl {
+    font-size: clamp(1.25rem, 1rem + 0.78125vw, 2.44140625rem); /* 20px → 39px (1.25x) */
+  }
+
+  .text-fluid-2xl {
+    font-size: clamp(1.5rem, 1.25rem + 0.78125vw, 3.0517578125rem); /* 24px → 49px (1.25x) */
+  }
+
+  .text-fluid-3xl {
+    font-size: clamp(1.875rem, 1.5625rem + 0.78125vw, 3.814697265625rem); /* 30px → 61px (1.25x) */
+  }
+
+  .text-fluid-4xl {
+    font-size: clamp(2.25rem, 1.875rem + 0.9375vw, 4.76837158203125rem); /* 36px → 76px (1.25x) */
+  }
+
+  .text-fluid-5xl {
+    font-size: clamp(3rem, 2.5rem + 1.25vw, 6rem); /* 48px → 96px (1.25x) */
+  }
+
+  .text-fluid-6xl {
+    font-size: clamp(3.75rem, 3.125rem + 1.5625vw, 7.5rem); /* 60px → 120px (1.25x) */
+  }
+
+  .text-fluid-7xl {
+    font-size: clamp(4.5rem, 3.75rem + 1.875vw, 9rem); /* 72px → 144px (1.25x) */
+  }
+
+  /* Fluid Line Height Utilities - Scales proportionally with font size */
+  /* These maintain consistent line-height ratios as text scales */
+  
+  .leading-fluid-tight {
+    line-height: clamp(1.1, 1.1 + 0.05vw, 1.2);
+  }
+
+  .leading-fluid-normal {
+    line-height: clamp(1.4, 1.4 + 0.05vw, 1.5);
+  }
+
+  .leading-fluid-relaxed {
+    line-height: clamp(1.5, 1.5 + 0.05vw, 1.6);
+  }
+
+  /* Default line-heights for fluid typography classes */
+  /* Headings get tighter line-height, body text gets normal */
+  .text-fluid-xs,
+  .text-fluid-sm,
+  .text-fluid-base,
+  .text-fluid-lg,
+  .text-fluid-xl {
+    line-height: clamp(1.4, 1.4 + 0.05vw, 1.5);
+  }
+
+  .text-fluid-2xl,
+  .text-fluid-3xl,
+  .text-fluid-4xl,
+  .text-fluid-5xl,
+  .text-fluid-6xl,
+  .text-fluid-7xl {
+    line-height: clamp(1.1, 1.1 + 0.05vw, 1.2);
+  }
+
+  /* Fluid Spacing Utilities - Scales proportionally with viewport */
+  /* Use these for padding/margin that should scale with fluid typography */
+  
+  .space-fluid-xs {
+    gap: clamp(0.25rem, 0.2rem + 0.125vw, 0.5rem); /* 4px → 8px */
+  }
+
+  .space-fluid-sm {
+    gap: clamp(0.5rem, 0.4rem + 0.25vw, 1rem); /* 8px → 16px */
+  }
+
+  .space-fluid-md {
+    gap: clamp(1rem, 0.8rem + 0.5vw, 2rem); /* 16px → 32px */
+  }
+
+  .space-fluid-lg {
+    gap: clamp(1.5rem, 1.2rem + 0.75vw, 3rem); /* 24px → 48px */
+  }
+
+  .space-fluid-xl {
+    gap: clamp(2rem, 1.6rem + 1vw, 4rem); /* 32px → 64px */
+  }
+
+  .space-fluid-2xl {
+    gap: clamp(2.5rem, 2rem + 1.25vw, 5rem); /* 40px → 80px */
+  }
+
+  /* Fluid Padding Utilities */
+  .p-fluid-xs {
+    padding: clamp(0.25rem, 0.2rem + 0.125vw, 0.5rem);
+  }
+
+  .p-fluid-sm {
+    padding: clamp(0.5rem, 0.4rem + 0.25vw, 1rem);
+  }
+
+  .p-fluid-md {
+    padding: clamp(1rem, 0.8rem + 0.5vw, 2rem);
+  }
+
+  .p-fluid-lg {
+    padding: clamp(1.5rem, 1.2rem + 0.75vw, 3rem);
+  }
+
+  .px-fluid-xs {
+    padding-left: clamp(0.25rem, 0.2rem + 0.125vw, 0.5rem);
+    padding-right: clamp(0.25rem, 0.2rem + 0.125vw, 0.5rem);
+  }
+
+  .px-fluid-sm {
+    padding-left: clamp(0.5rem, 0.4rem + 0.25vw, 1rem);
+    padding-right: clamp(0.5rem, 0.4rem + 0.25vw, 1rem);
+  }
+
+  .px-fluid-md {
+    padding-left: clamp(1rem, 0.8rem + 0.5vw, 2rem);
+    padding-right: clamp(1rem, 0.8rem + 0.5vw, 2rem);
+  }
+
+  .px-fluid-lg {
+    padding-left: clamp(1.5rem, 1.2rem + 0.75vw, 3rem);
+    padding-right: clamp(1.5rem, 1.2rem + 0.75vw, 3rem);
+  }
+
+  .py-fluid-xs {
+    padding-top: clamp(0.25rem, 0.2rem + 0.125vw, 0.5rem);
+    padding-bottom: clamp(0.25rem, 0.2rem + 0.125vw, 0.5rem);
+  }
+
+  .py-fluid-sm {
+    padding-top: clamp(0.5rem, 0.4rem + 0.25vw, 1rem);
+    padding-bottom: clamp(0.5rem, 0.4rem + 0.25vw, 1rem);
+  }
+
+  .py-fluid-md {
+    padding-top: clamp(1rem, 0.8rem + 0.5vw, 2rem);
+    padding-bottom: clamp(1rem, 0.8rem + 0.5vw, 2rem);
+  }
+
+  .py-fluid-lg {
+    padding-top: clamp(1.5rem, 1.2rem + 0.75vw, 3rem);
+    padding-bottom: clamp(1.5rem, 1.2rem + 0.75vw, 3rem);
+  }
+
+  .py-fluid-xl {
+    padding-top: clamp(2rem, 1.6rem + 1vw, 4rem); /* 32px → 64px */
+    padding-bottom: clamp(2rem, 1.6rem + 1vw, 4rem); /* 32px → 64px */
+  }
+
+  .py-fluid-2xl {
+    padding-top: clamp(2.5rem, 2rem + 1.25vw, 5rem); /* 40px → 80px */
+    padding-bottom: clamp(2.5rem, 2rem + 1.25vw, 5rem); /* 40px → 80px */
+  }
+
+  .pt-fluid-xs {
+    padding-top: clamp(0.25rem, 0.2rem + 0.125vw, 0.5rem);
+  }
+
+  .pt-fluid-sm {
+    padding-top: clamp(0.5rem, 0.4rem + 0.25vw, 1rem);
+  }
+
+  .pt-fluid-md {
+    padding-top: clamp(1rem, 0.8rem + 0.5vw, 2rem);
+  }
+
+  .pt-fluid-lg {
+    padding-top: clamp(1.5rem, 1.2rem + 0.75vw, 3rem);
+  }
+
+  .pt-fluid-xl {
+    padding-top: clamp(2rem, 1.6rem + 1vw, 4rem); /* 32px → 64px */
+  }
+
+  .pt-fluid-2xl {
+    padding-top: clamp(2.5rem, 2rem + 1.25vw, 5rem); /* 40px → 80px */
+  }
+
+  .pb-fluid-xs {
+    padding-bottom: clamp(0.25rem, 0.2rem + 0.125vw, 0.5rem);
+  }
+
+  .pb-fluid-sm {
+    padding-bottom: clamp(0.5rem, 0.4rem + 0.25vw, 1rem);
+  }
+
+  .pb-fluid-md {
+    padding-bottom: clamp(1rem, 0.8rem + 0.5vw, 2rem);
+  }
+
+  .pb-fluid-lg {
+    padding-bottom: clamp(1.5rem, 1.2rem + 0.75vw, 3rem);
+  }
+
+  .pb-fluid-xl {
+    padding-bottom: clamp(2rem, 1.6rem + 1vw, 4rem); /* 32px → 64px */
+  }
+
+  .pb-fluid-2xl {
+    padding-bottom: clamp(2.5rem, 2rem + 1.25vw, 5rem); /* 40px → 80px */
+  }
 }

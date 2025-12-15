@@ -42,11 +42,11 @@ const PageHero = ({ title, description }: PageHeroProps) => {
 
   return (
     <article className={`w-full lg:w-[75%] flex flex-col justify-center items-center gap-4 text-center`}>
-      {/* Main page heading with responsive typography and scroll-triggered fade-slide-up animation */}
+      {/* Main page heading with fluid typography and scroll-triggered fade-slide-up animation */}
       <h1 
         ref={titleRef}
         className={clsx(
-          'w-full font-bold text-5xl md:text-7xl tracking-tight animate-on-scroll',
+          'w-full font-bold text-fluid-5xl tracking-tight leading-[1] animate-on-scroll',
           isTitleVisible && 'animate-fade-slide-up'
         )}
       >
@@ -56,7 +56,7 @@ const PageHero = ({ title, description }: PageHeroProps) => {
       <p 
         ref={descriptionRef}
         className={clsx(
-          'w-full font-extralight text-lg md:text-xl tracking-tight leading-tight md:leading-tight animate-on-scroll',
+          'w-full font-extralight text-fluid-lg tracking-tight leading-tight animate-on-scroll',
           isDescriptionVisible && 'animate-fade-slide-up-delay'
         )}
       >

@@ -169,13 +169,13 @@ export const MaterialBreakdownChart: React.FC<MaterialBreakdownChartProps> = ({ 
   }
 
   return (
-    <div className="self-stretch rounded-[40px] flex flex-col justify-start items-start gap-8"> 
+    <div className="self-stretch rounded-[40px] flex flex-col justify-start items-start space-fluid-xl"> 
       {/* Title and Description Container */}
-      <div className="self-stretch px-4 md:px-10 lg:px-12 pt-2 text-center"> 
+      <div className="self-stretch px-4 md:px-10 lg:px-12 pt-fluid-lg text-center"> 
         <h2 
           ref={headingRef}
           className={clsx(
-            "text-black font-bold text-4xl tracking-tight pb-2 animate-on-scroll",
+            "text-black font-bold text-fluid-4xl tracking-tight leading-tight pb-fluid-md animate-on-scroll",
             isHeadingVisible && 'animate-fade-slide-up'
           )}
         >
@@ -183,7 +183,7 @@ export const MaterialBreakdownChart: React.FC<MaterialBreakdownChartProps> = ({ 
         </h2>
         {/* Description moved here */}
         {description && (
-          <div className="text-xl md:text-xl font-extralight tracking-tight leading-tight md:px-12">
+          <div className="text-fluid-xl font-extralight tracking-tight leading-tight md:px-12 pt-fluid-sm">
             {description}
           </div>
         )}
@@ -254,10 +254,10 @@ export const MaterialBreakdownChart: React.FC<MaterialBreakdownChartProps> = ({ 
                   style={{ backgroundColor: color }}
                 />
                 <div className="inline-flex flex-col justify-start items-start gap-1">
-                  <span className="text-black text-base font-light leading-normal">{item.material}</span> 
+                  <span className="text-black text-fluid-base font-light leading-normal">{item.material}</span> 
                   <div className="inline-flex justify-start items-baseline gap-0.5">
-                    <span className="text-black text-xl font-bold leading-tight">{new Intl.NumberFormat().format(item.weight)}</span> 
-                    <span className="text-black text-base  leading-tight">Kg</span> 
+                    <span className="text-black text-fluid-xl font-bold leading-tight">{new Intl.NumberFormat().format(item.weight)}</span> 
+                    <span className="text-black text-fluid-base leading-tight">Kg</span> 
                   </div>
                 </div>
               </div>

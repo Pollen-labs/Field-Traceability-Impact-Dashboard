@@ -119,9 +119,9 @@ const StatsBar = ({ pageName, partnerId }: StatsBarProps) => {
             className={`flex flex-col items-center text-center pb-6 lg:pb-0 ${index !== pageStats.length - 1 ? 'border-b lg:border-b-0' : ''} border-darkSand`}
           >
             {/* Stat title */}
-            <p className="text-lg font-extralight">{stat.title}</p>
+            <p className="text-fluid-lg font-extralight">{stat.title}</p>
             {/* Stat value with animated counting */}
-            <p className="text-4xl md:text-5xl font-bold pt-4 pb-1">
+            <p className="text-fluid-4xl font-bold pt-4 pb-1">
               <AnimatedNumber
                 value={stat.value}
                 duration={800}

@@ -40,12 +40,12 @@ const NavLogo = ({ showSubtitle }: NavLogoProps) => {
         }        
         <div className="text-left shrink-0">
           {/* Main logo text - always on a single line */}
-          <p className={showSubtitle ? "font-bold text-2xl leading-tight whitespace-nowrap" : "font-bold text-lg md:text-2xl leading-tight whitespace-nowrap"}>
+          <p className={showSubtitle ? "font-bold text-fluid-2xl leading-tight whitespace-nowrap" : "font-bold text-fluid-xl leading-tight whitespace-nowrap"}>
             ENALEIA Hub
           </p>
           {/* Optional subtitle text - also constrained to a single line */}
           {showSubtitle && (
-            <p className="text-xs font-extralight whitespace-nowrap">
+            <p className="text-fluid-xs font-extralight whitespace-nowrap">
               A project built on Ethereum
             </p>
           )}

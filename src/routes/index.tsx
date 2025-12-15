@@ -139,40 +139,40 @@ function HomeComponent() {
             <p 
               ref={impactHeadingRef}
               className={clsx(
-                'w-full font-bold text-5xl md:text-6xl lg:text-7xl tracking-tight px-10 pt-4 md:pt-10 animate-on-scroll',
+                'w-full font-bold text-fluid-6xl tracking-tight leading-tight px-10 pt-4 md:pt-10 animate-on-scroll',
                 isImpactHeadingVisible && 'animate-fade-slide-up'
               )}
             >
               {impactSectionTitle}
             </p>
-            <p className='w-[90%] md:w-[60%] font-extralight text-lg md-text-xl tracking-tight leading-tight md:leading-tight py-2 md:py-6'>{impactSectionDescription}</p>
+            <p className='w-[90%] md:w-[60%] font-extralight text-fluid-lg tracking-tight leading-tight py-2 md:py-6'>{impactSectionDescription}</p>
           </div>
         </article>
         <StatsBar pageName='Home'/>
         <ActivityMap pageName='Home'/>
       </section>
       {/* Waste Collection Data Section - Displays charts with time filtering */}
-      <section className='flex flex-col border border-primary rounded-3xl pb-4'>
+      <section className='flex flex-col border border-primary rounded-3xl pb-fluid-sm'>
         {/* Chart header with title, description and time range filters */}
-        <article className='px-4 py-8 md:p-12 md:pb-0 text-center'>
+        <article className='px-4 pt-fluid-2xl pb-fluid-lg md:px-fluid-md text-center'>
           <p 
             ref={wasteChartHeadingRef}
             className={clsx(
-              'font-bold text-4xl tracking-tight pb-4 animate-on-scroll',
+              'font-bold text-fluid-4xl tracking-tight leading-tight pb-fluid-md animate-on-scroll',
               isWasteChartHeadingVisible && 'animate-fade-slide-up'
             )}
           >
             {wasteChartTitle}
           </p>
-          <div className='flex flex-col items-center gap-4'>
-            <p className='font-extralight text-xl md-text-xl tracking-tight leading-tight md:leading-tight text-center md:px-20'>{wasteChartDescription}</p>
+          <div className='flex flex-col items-center space-fluid-md'>
+            <p className='font-extralight text-fluid-xl tracking-tight leading-tight text-center md:px-20 pt-fluid-sm'>{wasteChartDescription}</p>
             {/* Time range filter buttons */}
             <div className='flex flex-row justify-center gap-1 md:gap-2'>        
               {dateChoices.map((choice) => (
                 <Button 
                   key={choice}
                   variant={selectedChartDates === choice ? "default" : "outline"}
-                  className='text-xs'
+                  className='text-fluid-xs'
                   onClick={() => setSelectedChartDates(choice)}
                 >
                   {choice}
@@ -185,7 +185,7 @@ function HomeComponent() {
         <CollectionChart pageName='Home' timeRange={selectedChartDates}/>
         <CustomChartLegend category='materials' />
 
-        <article className='font-extralight text-base md:text-lg text-center p-6 md:p-12'>
+        <article className='font-extralight text-fluid-base text-center py-fluid-xl px-4 md:px-fluid-lg'>
           <p>
             To explore the individual collection activities of our partners, please view our
             <Link to="/locations" className='font-bold'>&nbsp;&nbsp;locations page</Link>
@@ -193,11 +193,11 @@ function HomeComponent() {
         </article>
       </section>
       {/* --- New Section for Material Breakdown Chart --- */}
-      <section className='w-full border border-primary rounded-3xl overflow-hidden p-6 md:p-12'> 
+      <section className='w-full border border-primary rounded-3xl overflow-hidden pt-fluid-2xl px-6 pb-6 md:px-12 md:pb-12'> 
         {isLoadingMaterials ? (
           <ChartSkeleton />
         ) : materialError ? (
-          <div className="text-center text-lg py-8">Error loading material breakdown: {materialError.message}</div>
+          <div className="text-center text-fluid-lg py-8">Error loading material breakdown: {materialError.message}</div>
         ) : materialData ? (
           <MaterialBreakdownChart 
             data={materialData} 
@@ -205,7 +205,7 @@ function HomeComponent() {
             description={breakdownDescription}
           />
         ) : (
-          <div className="text-center text-lg py-8">No material breakdown data available.</div>
+          <div className="text-center text-fluid-lg py-8">No material breakdown data available.</div>
         )}
       </section>
       {/* --- End New Section --- */}
@@ -215,13 +215,13 @@ function HomeComponent() {
         <p 
           ref={collabHeadingRef}
           className={clsx(
-            'font-bold text-3xl md:text-5xl tracking-tight animate-on-scroll',
+            'font-bold text-fluid-4xl tracking-tight leading-tight animate-on-scroll',
             isCollabHeadingVisible && 'animate-fade-slide-up'
           )}
         >
           {collabSectionTitle}
         </p>
-        <p className='w-full text-lg md-text-lg font-extralight leading-tight md:leading-tight'>{collabSectionDescription}</p>
+        <p className='w-full text-fluid-lg font-extralight leading-tight'>{collabSectionDescription}</p>
         <Link to="/about" >
           <Button 
             ref={collabButtonRef}

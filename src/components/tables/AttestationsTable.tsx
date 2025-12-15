@@ -149,7 +149,7 @@ const AttestationsTable = <T extends { id: string | number, timestamp?: string }
 
   if (error) {
     return (
-      <article className="w-full min-h-[400px] lg:min-h-[598px] flex flex-col justify-center items-center text-center text-lg px-10">
+      <article className="w-full min-h-[400px] lg:min-h-[598px] flex flex-col justify-center items-center text-center text-fluid-lg px-10">
         <p>Sorry! We are not able to build the attestation table at this time.</p>
         <img src="/illustrations/dolphin.svg" alt="error illustration" className="w-[300px] h-[300px] opacity-50" loading="lazy" />
       </article>
@@ -158,7 +158,7 @@ const AttestationsTable = <T extends { id: string | number, timestamp?: string }
 
   if (!isLoading && !error && sortedData.length === 0) {
      return (
-      <article className="w-full min-h-[400px] lg:min-h-[598px] flex flex-col justify-center items-center text-center text-lg px-10">
+      <article className="w-full min-h-[400px] lg:min-h-[598px] flex flex-col justify-center items-center text-center text-fluid-lg px-10">
         <p>There are no attestations matching the current criteria.</p>
         <img src="/illustrations/dolphin.svg" alt="empty state illustration" className="w-[300px] h-[300px] opacity-50" loading="lazy" />
       </article>
@@ -192,7 +192,7 @@ const AttestationsTable = <T extends { id: string | number, timestamp?: string }
                                         style={column.isSortable ? { cursor: 'pointer' } : {}}
                                     >
                                         {/* Header Inner Content: padding, alignment, uppercase */}
-                                        <div className="text-xs font-light text-softBlack px-4 lg:px-6 py-2 flex items-center justify-between h-full">
+                                        <div className="text-fluid-xs font-light text-softBlack px-4 lg:px-6 py-2 flex items-center justify-between h-full">
                                             <span className="uppercase">{column.header}</span> {/* Make header uppercase */}
                                             {column.isSortable && (
                                                 <span className="ml-1">

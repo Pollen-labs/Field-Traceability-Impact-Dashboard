@@ -65,13 +65,13 @@ function AboutComponent() {
         <h2 
           ref={hubFlowHeadingRef}
           className={clsx(
-            'w-full font-bold text-4xl md:text-6xl tracking-tight px-16 pb-6 animate-on-scroll',
+            'w-full font-bold text-fluid-5xl tracking-tight leading-tight px-16 pb-6 animate-on-scroll',
             isHubFlowHeadingVisible && 'animate-fade-slide-up'
           )}
         >
           {hubFlowSectionTitle}
         </h2>
-        <p className='w-full font-extralight text-base md:text-lg tracking-tight leading-tight md:leading-tight md:px-12'>{formatTextWithBold(hubFlowSectionDescription)}</p>
+        <p className='w-full font-extralight text-fluid-lg tracking-tight leading-tight md:px-12'>{formatTextWithBold(hubFlowSectionDescription)}</p>
         {/* Card grid showing the step-by-step process */}
         <div className='flex flex-col lg:flex-row gap-4 md:justify-between pt-8'>
           {aboutCardInfo.map(({ image, title, description }) => (
@@ -93,7 +93,7 @@ function AboutComponent() {
             <h2 
               ref={collabHeadingRef}
               className={clsx(
-                'flex items-center gap-4 font-bold text-4xl md:text-6xl tracking-tight animate-on-scroll',
+                'flex items-center gap-4 font-bold text-fluid-5xl tracking-tight leading-tight animate-on-scroll',
                 isCollabHeadingVisible && 'animate-fade-slide-up'
               )}
             >
@@ -105,11 +105,11 @@ function AboutComponent() {
               />
               <span>{collabSectionTitle}</span>
             </h2>
-            <p className='font-extralight text-base tracking-tight leading-tight md:leading-tight pt-8'>
+            <p className='font-extralight text-fluid-base tracking-tight leading-tight pt-8'>
               {formatTextWithBold(collabSectionDescription1)}
             </p>
             <p
-              className='font-extralight text-base tracking-tight leading-tight md:leading-tight py-4'
+              className='font-extralight text-fluid-base tracking-tight leading-tight py-4'
               dangerouslySetInnerHTML={{ __html: collabSectionDescription2 }}
             />
           </div>
@@ -122,7 +122,7 @@ function AboutComponent() {
                 rel="noopener noreferrer" 
                 className='flex justify-between items-center border-b border-softBlack py-2 group'
               >
-                <p className='text-lg'>{text}</p>
+                <p className='text-fluid-lg'>{text}</p>
                 <ArrowUpRight className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"/>
               </a>
             ))}

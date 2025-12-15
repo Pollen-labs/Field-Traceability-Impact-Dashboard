@@ -61,13 +61,13 @@ const PageHeading = ({ productId, dataCategory }: PageHeadingProps) => {
           <h1 
             ref={headingRef}
             className={clsx(
-              "font-bold text-5xl md:text-6xl lg:text-7xl tracking-tight animate-on-scroll",
+              "font-bold text-fluid-6xl tracking-tight leading-none animate-on-scroll",
               isHeadingVisible && 'animate-fade-slide-up'
             )}
           >
             {name}
           </h1>
-          <p className="text-base md:text-base font-extralight">Manufactured by:<strong> {manufacturedBy}</strong></p>
+          <p className="text-fluid-base font-extralight">Manufactured by:<strong> {manufacturedBy}</strong></p>
           
           {/* Product image for mobile view */}
           {!isDesktop && 
@@ -76,7 +76,7 @@ const PageHeading = ({ productId, dataCategory }: PageHeadingProps) => {
             </div>
           }
           
-          <p className="font-extralight text-lg md:text-xl tracking-tight leading-tight md:leading-tight my-4">{description}</p>
+          <p className="font-extralight text-fluid-xl tracking-tight leading-tight my-4">{description}</p>
           
           {/* Blockchain Attestation Information */}
           <div className="bg-sand rounded-xl p-4 my-4">

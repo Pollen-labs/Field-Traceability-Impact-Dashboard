@@ -45,11 +45,11 @@ const ShowingDisplay = ({
 	}
 	// Special case for a single item
 	if (totalItemAmount === 1) {
-		return <p className="text-sm md:text-base">Showing 1 item</p>;
+		return <p className="text-fluid-sm">Showing 1 item</p>;
 	}
 	// Calculate and display the current range
 	return (
-		<p className="text-sm md:text-base">
+		<p className="text-fluid-sm">
 			Showing {(currentPage - 1) * itemsPerPage + 1} -{" "}
 			{currentPage * itemsPerPage > totalItemAmount
 				? totalItemAmount

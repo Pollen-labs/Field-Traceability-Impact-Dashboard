@@ -80,7 +80,7 @@ const ActionsTable = ({ pageName, partnerType }: ActionsTableProps) => {
 
   if (error) {
     return (
-      <article className="w-full lg:h-[598px] flex flex-col justify-center items-center text-center text-lg px-10">
+      <article className="w-full lg:h-[598px] flex flex-col justify-center items-center text-center text-fluid-lg px-10">
         <p>😕 sorry!</p>
         <p>We are not able to build the {pageName} table at this time.</p>
         <img 
@@ -104,7 +104,7 @@ const ActionsTable = ({ pageName, partnerType }: ActionsTableProps) => {
               <TableRow className="border-none">
                 {/* Partner name column header - always visible */}
                 <TableHead className="p-0 w-[30%]">
-                    <div className="text-xs font-light text-softBlack bg-sand px-4 md:px-8 py-1 md:py-2 border border-darkSand rounded-l-full">
+                    <div className="text-fluid-xs font-light text-softBlack bg-sand px-4 md:px-8 py-1 md:py-2 border border-darkSand rounded-l-full">
                       {pageName === 'Locations' ? 'LOCATION NAME' : 'VESSEL NAME'}
                     </div>
                 </TableHead>
@@ -235,7 +235,7 @@ const ActionsTable = ({ pageName, partnerType }: ActionsTableProps) => {
                                 className="h-5 w-5 flex-shrink-0"
                                 loading="lazy"
                               />
-                              <span className="text-sm font-medium text-gray-700">{type}</span>
+                              <span className="text-fluid-sm font-medium text-gray-700">{type}</span>
                             </div>
                             <img 
                               src={`/country-flags/${country}.svg`} 
@@ -246,10 +246,10 @@ const ActionsTable = ({ pageName, partnerType }: ActionsTableProps) => {
                           </div>
                           {/* Middle row: Name */}
                           <div className="mb-4 text-left">
-                            <h3 className="text-lg font-semibold truncate" title={name}>{name}</h3>
+                            <h3 className="text-fluid-lg font-semibold truncate" title={name}>{name}</h3>
                           </div>
                           {/* Bottom row: Actions */}
-                          <div className="text-sm text-gray-600">
+                          <div className="text-fluid-sm text-gray-600">
                             Actions: {action_count}
                           </div>
                         </div>

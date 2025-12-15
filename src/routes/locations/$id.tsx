@@ -139,15 +139,15 @@ function LocationDetailComponent() {
             rel="noopener noreferrer" 
             className="block text-current no-underline hover:text-current"
           >
-            <div className='border border-darkSand rounded-2xl p-4 text-sm'> 
+            <div className='border border-darkSand rounded-2xl p-4 text-fluid-sm'> 
                 <div className='flex justify-between items-start mb-1'>
-                    <span className='text-sm text-gray-600'>{item.dateFormatted || 'N/A'}</span>
+                    <span className='text-fluid-sm text-gray-600'>{item.dateFormatted || 'N/A'}</span>
                 </div>
-                <p className='font-semibold text-2xl mb-6'>{item.action || 'N/A'}</p>
-                <p className='text-sm text-gray-700 mb-1'>
+                <p className='font-semibold text-fluid-2xl mb-6'>{item.action || 'N/A'}</p>
+                <p className='text-fluid-sm text-gray-700 mb-1'>
                     Submitted by: {item.submittedBy ? formatAddress(item.submittedBy, 4, 5) : 'N/A'}
                 </p>
-                <div className='text-sm text-gray-700 flex items-center'>
+                <div className='text-fluid-sm text-gray-700 flex items-center'>
                     Attestation UID: {item.id ? formatAddress(item.id, 10, 10) : 'N/A'}
                     <ArrowUpRight size={14} strokeWidth={1.5} className="ml-1 flex-shrink-0" />
                 </div>
@@ -219,13 +219,13 @@ function LocationDetailComponent() {
           <h2 
             ref={headingRef}
             className={clsx(
-              "font-bold text-4xl md:text-5xl tracking-tight pb-2 animate-on-scroll",
+              "font-bold text-fluid-4xl tracking-tight leading-tight pb-2 animate-on-scroll",
               isHeadingVisible && 'animate-fade-slide-up'
             )}
           >
             {heading}
           </h2>
-          <p className="font-extralight text-sm md:text-lg tracking-tight leading-tight md:leading-tight">{description}</p>       
+          <p className="font-extralight text-fluid-lg tracking-tight leading-tight">{description}</p>       
         </div>
         {/* Stats dashboard with location-specific metrics */}
         <StatsBar pageName={`${type}Detail`} partnerId={id}/>
@@ -237,7 +237,7 @@ function LocationDetailComponent() {
               <h3 
                 ref={statSubtitleRef}
                 className={clsx(
-                  'font-bold text-lg md:text-2xl tracking-tight leading-tight px-12 pb-2 animate-on-scroll',
+                  'font-bold text-fluid-xl tracking-tight leading-tight px-12 pb-2 animate-on-scroll',
                   isStatSubtitleVisible && 'animate-fade-slide-up'
                 )}
               >
@@ -258,7 +258,7 @@ function LocationDetailComponent() {
               <h2 
                 ref={actionTypeHeadingRef}
                 className={clsx(
-                  'font-bold text-4xl tracking-tight pb-4 animate-on-scroll',
+                  'font-bold text-fluid-4xl tracking-tight leading-tight pb-4 animate-on-scroll',
                   isActionTypeHeadingVisible && 'animate-fade-slide-up'
                 )}
               >
@@ -270,7 +270,7 @@ function LocationDetailComponent() {
                   <Button
                     key={choice}
                     variant={selectedChartDates === choice ? 'default' : 'outline'}
-                    className='text-xs'
+                    className='text-fluid-xs'
                     onClick={() => setSelectedChartDates(choice)}
                   >
                     {choice}
@@ -314,7 +314,7 @@ function LocationDetailComponent() {
         <h2 
           ref={attestationsHeadingRef}
           className={clsx(
-            "font-bold text-3xl md:text-5xl tracking-tight animate-on-scroll",
+            "font-bold text-fluid-4xl tracking-tight leading-tight animate-on-scroll",
             isAttestationsHeadingVisible && 'animate-fade-slide-up'
           )}
         >

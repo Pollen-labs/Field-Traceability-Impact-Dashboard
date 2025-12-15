@@ -71,7 +71,7 @@ const DetailPageHeading = ({ name, country, coordinates, registered_port, type, 
           <h1 
             ref={headingRef}
             className={clsx(
-              'font-bold text-5xl md:text-6xl lg:text-7xl tracking-tight animate-on-scroll',
+              'font-bold text-fluid-6xl tracking-tight leading-tight animate-on-scroll',
               isHeadingVisible && 'animate-fade-slide-up'
             )}
           >

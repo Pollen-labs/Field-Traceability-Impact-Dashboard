@@ -60,7 +60,7 @@ const CollectionChart = ({ pageName, partnerId, timeRange }: CollectionChartProp
     // Scrollable container for horizontal overflow on smaller screens
     <ScrollArea className="max-w-[350px] md:max-w-[650px] lg:max-w-[1500px] xl:max-w-[1700px] 2xl:max-w-[1900px]">
       <Card className="border-none shadow-none"> 
-        <CardContent className="md:p-12">  
+        <CardContent className="p-fluid-sm md:p-fluid-lg">  
           {/* Container component for chart with consistent sizing */} 
           <ChartContainer 
             config={chartConfig} 
@@ -68,12 +68,12 @@ const CollectionChart = ({ pageName, partnerId, timeRange }: CollectionChartProp
           >
             {/* Loading state */}
             {isPending ? (
-              <div className="w-full h-full text-lg">
+              <div className="w-full h-full text-fluid-lg">
                 Loading chart data...
               </div>
             ) : error || !records.length ? (
               // Error or empty data state
-              <div className="w-[40%] md:w-full h-full flex flex-col justify-center md:items-center text-center text-lg">
+              <div className="w-[40%] md:w-full h-full flex flex-col justify-center md:items-center text-center text-fluid-lg">
                 <p>😕 sorry!</p>
                 <p>We were not able to build the chart you requested.</p>
                 <img 
@@ -112,7 +112,7 @@ const CollectionChart = ({ pageName, partnerId, timeRange }: CollectionChartProp
                   cursor={false} 
                   content={
                     <ChartTooltipContent 
-                      className="w-[320px] rounded-3xl gap-2 md:gap-3 text-sm md:text-lg p-4 md:p-6"
+                      className="w-[320px] rounded-3xl gap-2 md:gap-3 text-fluid-sm md:text-fluid-lg p-4 md:p-6"
                       // Format the tooltip label (month and year)
                       labelFormatter={(value) => (
                         <div className="font-light">
@@ -125,12 +125,12 @@ const CollectionChart = ({ pageName, partnerId, timeRange }: CollectionChartProp
                           {/* Colored indicator matching the area fill */}
                           <div className={`h-3 w-3 md:h-4 md:w-4 rounded-full bg-${getCssClassName(String(name))}`}/>
                           {/* Formatted category name (converting camelCase to space-separated sentence case) */}
-                          <div className="font-semibold text-base">{formatCamelCaseString(String(name))}</div>
+                          <div className="font-semibold text-fluid-base">{formatCamelCaseString(String(name))}</div>
                           {/* Value with unit */}
-                          <div className="ml-auto font-light text-base">{value} Kg</div>
+                          <div className="ml-auto font-light text-fluid-base">{value} Kg</div>
                           {/* Show total on the last item */}
                           {index === (pageName === "Home" ? 6 : 3) && (
-                            <div className="mt-1.5 flex basis-full items-center border-t border-gray-400 pt-1.5 text-sm md:text-lg">
+                            <div className="mt-1.5 flex basis-full items-center border-t border-gray-400 pt-1.5 text-fluid-sm md:text-fluid-lg">
                               Total
                               <div className="ml-auto font-extralight">
                                 {calculateTooltipTotal({payload: item.payload, config: chartConfig})} Kg

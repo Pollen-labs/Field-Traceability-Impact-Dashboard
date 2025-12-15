@@ -52,7 +52,7 @@ function VesselsComponent() {
         />
         
         {/* Mobile Title */}
-        <h2 className="block lg:hidden text-xl font-semibold mt-8 mb-4 px-1">Vessels list</h2>
+        <h2 className="block lg:hidden text-fluid-xl font-semibold mt-8 mb-4 px-1">Vessels list</h2>
 
         {/* Remove top/bottom padding on mobile, keep for desktop */}
         <div className='overflow-hidden rounded-3xl lg:pt-8 lg:pb-16'>

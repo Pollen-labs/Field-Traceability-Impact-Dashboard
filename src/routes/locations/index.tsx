@@ -62,7 +62,7 @@ function LocationsComponent() {
         {/* Mobile Header: Title + View Toggle */}
         <div className="flex lg:hidden justify-between items-center mt-8 mb-4 px-1">
           {/* Mobile Title */}
-          <h2 className="text-xl font-semibold mb-1">Locations list</h2>
+          <h2 className="text-fluid-xl font-semibold mb-1">Locations list</h2>
 
           {/* Mobile View Toggle Buttons */}
           {viewTypes && setSelectedViewType ? (
