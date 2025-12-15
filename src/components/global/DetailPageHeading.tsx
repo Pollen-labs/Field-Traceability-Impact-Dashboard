@@ -1,6 +1,8 @@
 import { ArrowUpRight, ChevronLeft } from 'lucide-react'
 import { Separator } from '@/components/ui/separator'
 import { Link } from '@tanstack/react-router'
+import { useIntersectionObserver } from '@/hooks/ui/useIntersectionObserver'
+import { clsx } from 'clsx'
 
 /**
  * Interface for the DetailPageHeading component props
@@ -46,6 +48,12 @@ interface DetailPageHeadingProps {
 const DetailPageHeading = ({ name, country, coordinates, registered_port, type, addresses, collector_id}: DetailPageHeadingProps) => {
   const pageType = coordinates ? 'locations' : 'vessels'
   
+  const [headingRef, isHeadingVisible] = useIntersectionObserver({
+    threshold: 0.1,
+    rootMargin: '0px',
+    triggerOnce: true,
+  })
+  
   return (
     <section className='w-full'>
       <div className='flex flex-row justify-between items-start'>
@@ -59,8 +67,16 @@ const DetailPageHeading = ({ name, country, coordinates, registered_port, type, 
             <ChevronLeft className="w-4 h-4 transition-transform group-hover:-translate-x-0.5" />
             <span>{coordinates ? 'Locations' : 'Collectors'}</span>
           </Link>
-          {/* Location/Vessel name (main heading) */}
-          <h1 className='font-bold text-5xl md:text-6xl lg:text-7xl tracking-tight'>{name}</h1>
+          {/* Location/Vessel name (main heading) with scroll-triggered animation */}
+          <h1 
+            ref={headingRef}
+            className={clsx(
+              'font-bold text-5xl md:text-6xl lg:text-7xl tracking-tight animate-on-scroll',
+              isHeadingVisible && 'animate-fade-slide-up'
+            )}
+          >
+            {name}
+          </h1>
 
           {/* Details section with multiple data points */}
           <div className='flex flex-col lg:flex-row items-start gap-0.5 lg:gap-4 font-light'>

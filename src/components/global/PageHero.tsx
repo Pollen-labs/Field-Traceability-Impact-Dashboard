@@ -1,3 +1,6 @@
+import { useIntersectionObserver } from '@/hooks/ui/useIntersectionObserver'
+import { clsx } from 'clsx'
+
 /**
  * Interface for the PageHero component props
  * @property {string} title - Main heading text for the page
@@ -19,17 +22,46 @@ interface PageHeroProps {
  * - Centered layout with consistent spacing
  * - Narrower width on larger screens for improved readability
  * - Consistent styling across the application for visual coherence
+ * - Scroll-triggered fade-slide-up animations
  * 
  * Used on Home, Locations, Vessels, and About pages to establish
  * the main theme and purpose of each section.
  */
 const PageHero = ({ title, description }: PageHeroProps) => {
+  const [titleRef, isTitleVisible] = useIntersectionObserver({
+    threshold: 0.1,
+    rootMargin: '0px',
+    triggerOnce: true,
+  })
+
+  const [descriptionRef, isDescriptionVisible] = useIntersectionObserver({
+    threshold: 0.1,
+    rootMargin: '0px',
+    triggerOnce: true,
+  })
+
   return (
     <article className={`w-full lg:w-[75%] flex flex-col justify-center items-center gap-4 text-center`}>
-      {/* Main page heading with responsive typography */}
-      <h1 className='w-full font-bold text-5xl md:text-7xl tracking-tight'>{title}</h1>
-      {/* Descriptive subheading with lighter weight for visual hierarchy */}
-      <p className='w-full font-extralight text-lg md:text-xl tracking-tight leading-tight md:leading-tight'>{description}</p>
+      {/* Main page heading with responsive typography and scroll-triggered fade-slide-up animation */}
+      <h1 
+        ref={titleRef}
+        className={clsx(
+          'w-full font-bold text-5xl md:text-7xl tracking-tight animate-on-scroll',
+          isTitleVisible && 'animate-fade-slide-up'
+        )}
+      >
+        {title}
+      </h1>
+      {/* Descriptive subheading with lighter weight for visual hierarchy and delayed scroll-triggered fade-slide-up animation */}
+      <p 
+        ref={descriptionRef}
+        className={clsx(
+          'w-full font-extralight text-lg md:text-xl tracking-tight leading-tight md:leading-tight animate-on-scroll',
+          isDescriptionVisible && 'animate-fade-slide-up-delay'
+        )}
+      >
+        {description}
+      </p>
     </article>
   )
 }

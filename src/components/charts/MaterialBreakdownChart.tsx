@@ -9,6 +9,8 @@ import {
 import { MaterialsChartConfig } from '@/config/charts';
 import { MaterialBreakdownData, MaterialBreakdownItem } from '@/hooks/api/useHomeMaterialBreakdown';
 import { ChartConfig } from "@/components/ui/chart";
+import { useIntersectionObserver } from '@/hooks/ui/useIntersectionObserver';
+import { clsx } from 'clsx';
 
 // Helper to map API material names to config keys
 const getMaterialConfigKey = (materialName: string): string => {
@@ -106,6 +108,13 @@ export const MaterialBreakdownChart: React.FC<MaterialBreakdownChartProps> = ({ 
   // Ref for the chart container div
   const chartContainerRef = useRef<HTMLDivElement>(null);
 
+  // Intersection Observer for scroll-triggered animation
+  const [headingRef, isHeadingVisible] = useIntersectionObserver({
+    threshold: 0.1,
+    rootMargin: '0px',
+    triggerOnce: true,
+  });
+
   const chartData = [
     data.breakdown.reduce((acc: { [key: string]: number }, item: MaterialBreakdownItem) => {
       acc[getMaterialConfigKey(item.material)] = item.percentage;
@@ -163,7 +172,15 @@ export const MaterialBreakdownChart: React.FC<MaterialBreakdownChartProps> = ({ 
     <div className="self-stretch rounded-[40px] flex flex-col justify-start items-start gap-8"> 
       {/* Title and Description Container */}
       <div className="self-stretch px-4 md:px-10 lg:px-12 pt-2 text-center"> 
-        <h2 className="text-black font-bold text-4xl tracking-tight pb-2">{title}</h2>
+        <h2 
+          ref={headingRef}
+          className={clsx(
+            "text-black font-bold text-4xl tracking-tight pb-2 animate-on-scroll",
+            isHeadingVisible && 'animate-fade-slide-up'
+          )}
+        >
+          {title}
+        </h2>
         {/* Description moved here */}
         {description && (
           <div className="text-xl md:text-xl font-extralight tracking-tight leading-tight md:px-12">

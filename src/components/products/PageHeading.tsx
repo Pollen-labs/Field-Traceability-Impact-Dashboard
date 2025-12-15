@@ -11,6 +11,8 @@ import { useMediaQuery } from '@/hooks/ui/useMediaQuery'
 import { DESKTOP_BREAKPOINT } from '@/config/constants'
 import { ProductData } from '@/types'
 import { ArrowUpRight } from 'lucide-react'
+import { useIntersectionObserver } from '@/hooks/ui/useIntersectionObserver'
+import { clsx } from 'clsx'
 
 interface PageHeadingProps {
   productId: string               // Unique identifier for the product
@@ -24,6 +26,12 @@ const PageHeading = ({ productId, dataCategory }: PageHeadingProps) => {
   // Fetch product data from API with loading/error states
   const { isPending, error, data } = useProductData({ productId, dataCategory })
   const { type, name, manufacturedBy, image, description, UID } = data?.product || {}
+
+  const [headingRef, isHeadingVisible] = useIntersectionObserver({
+    threshold: 0.1,
+    rootMargin: '0px',
+    triggerOnce: true,
+  })
 
   /*
   * Loading/Error state view
@@ -48,7 +56,15 @@ const PageHeading = ({ productId, dataCategory }: PageHeadingProps) => {
         {/* Product Information Section */}
         <article className="lg:w-[55%] flex flex-col gap-0.5 md:gap-2 lg:gap-4 font-light">
           <p className="text-base md:text-base font-extralight">{type}</p>
-          <h1 className="font-bold text-5xl md:text-6xl lg:text-7xl tracking-tight">{name}</h1>
+          <h1 
+            ref={headingRef}
+            className={clsx(
+              "font-bold text-5xl md:text-6xl lg:text-7xl tracking-tight animate-on-scroll",
+              isHeadingVisible && 'animate-fade-slide-up'
+            )}
+          >
+            {name}
+          </h1>
           <p className="text-base md:text-base font-extralight">Manufactured by:<strong> {manufacturedBy}</strong></p>
           
           {/* Product image for mobile view */}

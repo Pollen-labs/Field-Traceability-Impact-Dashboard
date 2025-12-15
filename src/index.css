@@ -146,3 +146,41 @@ body {
     @apply bg-background text-foreground;
   }
 }
+
+@layer utilities {
+  /* Typography Animation Keyframes */
+  @keyframes fade-slide-up {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* Typography Animation Utilities - Applied conditionally when element is visible */
+  .animate-fade-slide-up {
+    animation: fade-slide-up 0.7s ease-out forwards;
+  }
+
+  .animate-fade-slide-up-delay {
+    animation: fade-slide-up 0.7s ease-out 0.15s forwards;
+  }
+
+  /* Longer delay for buttons that come after paragraphs */
+  .animate-fade-slide-up-button {
+    animation: fade-slide-up 0.7s ease-out 0.4s forwards;
+  }
+
+  /* Initial state for elements that should animate on scroll */
+  .animate-on-scroll {
+    opacity: 0;
+  }
+
+  /* When visible, trigger animation */
+  .animate-on-scroll.visible {
+    opacity: 1;
+  }
+}

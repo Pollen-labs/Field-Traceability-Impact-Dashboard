@@ -10,6 +10,8 @@ import { useHomeMaterialBreakdown } from '@/hooks/api/useHomeMaterialBreakdown'
 import { Button } from "@/components/ui/button"
 import { BackToTopButton } from '@/components/global/BackToTopButton'
 import { homePageTexts, dateChoices } from '@/config/texts'
+import { useIntersectionObserver } from '@/hooks/ui/useIntersectionObserver'
+import { clsx } from 'clsx'
 
 /**
  * Creates a route for the home page using TanStack Router
@@ -72,6 +74,37 @@ function HomeComponent() {
     )
     : "While all waste has been collected through the efforts of our partner fishermen, the total sorted weight is being calculated. This chart will break down sorted plastic by specific material types..." // Adjusted fallback text
 
+  // Intersection Observer hooks for scroll-triggered animations
+  const [heroButtonRef, isHeroButtonVisible] = useIntersectionObserver({
+    threshold: 0.1,
+    rootMargin: '0px',
+    triggerOnce: true,
+  })
+
+  const [impactHeadingRef, isImpactHeadingVisible] = useIntersectionObserver({
+    threshold: 0.1,
+    rootMargin: '0px',
+    triggerOnce: true,
+  })
+
+  const [wasteChartHeadingRef, isWasteChartHeadingVisible] = useIntersectionObserver({
+    threshold: 0.1,
+    rootMargin: '0px',
+    triggerOnce: true,
+  })
+
+  const [collabHeadingRef, isCollabHeadingVisible] = useIntersectionObserver({
+    threshold: 0.1,
+    rootMargin: '0px',
+    triggerOnce: true,
+  })
+
+  const [collabButtonRef, isCollabButtonVisible] = useIntersectionObserver({
+    threshold: 0.1,
+    rootMargin: '0px',
+    triggerOnce: true,
+  })
+
   return (
     <main className='flex flex-col justify-center items-center gap-8 m-auto pb-16 md:pb-24 md:pt-8 lg:pt-16 max-w-[1440px]'>
       {/* Hero Section - Displays page title, description and scrolling helper */}
@@ -81,7 +114,13 @@ function HomeComponent() {
           to="/products/$id" 
           params={{ id: '4767' }}
         >
-          <Button className='px-8 mb-8'>
+          <Button 
+            ref={heroButtonRef}
+            className={clsx(
+              'px-8 mb-8 animate-on-scroll',
+              isHeroButtonVisible && 'animate-fade-slide-up-button'
+            )}
+          >
             See sustainable tracing in action
           </Button>
         </Link>
@@ -96,7 +135,15 @@ function HomeComponent() {
             className='object-cover bg-center h-[350px] md:h-[450px] lg:h-auto w-full'
           />
           <div className='absolute inset-0 flex flex-col items-center justify-center text-center text-sand'>
-            <p className='w-full font-bold text-5xl md:text-6xl lg:text-7xl tracking-tight px-10 pt-4 md:pt-10'>{impactSectionTitle}</p>
+            <p 
+              ref={impactHeadingRef}
+              className={clsx(
+                'w-full font-bold text-5xl md:text-6xl lg:text-7xl tracking-tight px-10 pt-4 md:pt-10 animate-on-scroll',
+                isImpactHeadingVisible && 'animate-fade-slide-up'
+              )}
+            >
+              {impactSectionTitle}
+            </p>
             <p className='w-[90%] md:w-[60%] font-extralight text-lg md-text-xl tracking-tight leading-tight md:leading-tight py-2 md:py-6'>{impactSectionDescription}</p>
           </div>
         </article>
@@ -107,7 +154,15 @@ function HomeComponent() {
       <section className='flex flex-col border border-primary rounded-3xl pb-4'>
         {/* Chart header with title, description and time range filters */}
         <article className='px-4 py-8 md:p-12 md:pb-0 text-center'>
-          <p className='font-bold text-4xl tracking-tight pb-4'>{wasteChartTitle}</p>
+          <p 
+            ref={wasteChartHeadingRef}
+            className={clsx(
+              'font-bold text-4xl tracking-tight pb-4 animate-on-scroll',
+              isWasteChartHeadingVisible && 'animate-fade-slide-up'
+            )}
+          >
+            {wasteChartTitle}
+          </p>
           <div className='flex flex-col items-center gap-4'>
             <p className='font-extralight text-xl md-text-xl tracking-tight leading-tight md:leading-tight text-center md:px-20'>{wasteChartDescription}</p>
             {/* Time range filter buttons */}
@@ -156,10 +211,26 @@ function HomeComponent() {
 
       {/* Collaboration Section - Information about the project with CTA */}
       <section className='flex flex-col items-center gap-8 m-auto w-full lg:w-[85%] text-center tracking-tight px-4 md:px-0 mt-20 mb-16'>
-        <p className='font-bold text-3xl md:text-5xl tracking-tight'>{collabSectionTitle}</p>
+        <p 
+          ref={collabHeadingRef}
+          className={clsx(
+            'font-bold text-3xl md:text-5xl tracking-tight animate-on-scroll',
+            isCollabHeadingVisible && 'animate-fade-slide-up'
+          )}
+        >
+          {collabSectionTitle}
+        </p>
         <p className='w-full text-lg md-text-lg font-extralight leading-tight md:leading-tight'>{collabSectionDescription}</p>
         <Link to="/about" >
-          <Button className='px-8'>Learn more about how the hub works</Button>        
+          <Button 
+            ref={collabButtonRef}
+            className={clsx(
+              'px-8 animate-on-scroll',
+              isCollabButtonVisible && 'animate-fade-slide-up-button'
+            )}
+          >
+            Learn more about how the hub works
+          </Button>        
         </Link>
         {/* Button to scroll back to top of page */}
         <BackToTopButton />
