@@ -86,7 +86,7 @@ const HoverTooltip = ({ hoveredKey, data }: { hoveredKey: string | null; data: M
 
   // Final tooltip style (compact, rounded-full)
   return (
-    <div className="w-auto bg-white py-2 px-4 rounded-full shadow-lg flex items-center justify-between space-x-4 whitespace-nowrap">
+    <div className="w-auto bg-white rounded-full flex items-center justify-between space-x-4 whitespace-nowrap" style={{ border: '0.75px solid #BFBFBF', boxShadow: '15px 15px 45px -15px rgb(0 0 0 / 0.22)', padding: '12px 24px' }}>
       <div className="flex items-center gap-2">
         <div
           className="w-5 h-5 rounded-full flex-shrink-0"

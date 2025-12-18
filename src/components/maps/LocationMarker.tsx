@@ -170,7 +170,7 @@ export const LocationMarker = ({ record }: LocationMarkerProps) => {
         <div className="absolute left-1/2 -translate-x-1/2 pointer-events-none" style={{ bottom: '-20px', zIndex: 2 }}>
           <svg width="42" height="21" viewBox="0 0 42 21" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M17.2021 18.6239C19.1068 20.5759 22.2456 20.5758 24.1504 18.6239L39.9912 2.3915H1.36426L17.2021 18.6239ZM23.6133 18.1005C22.0028 19.7504 19.3496 19.7505 17.7393 18.1005L3.14355 3.1415H38.2119L23.6133 18.1005Z" fill="#BFBFBF"/>
-            <path d="M17.7453 18.1171C19.3546 19.7602 21.9998 19.7602 23.6091 18.1171L41.3545 0H0L17.7453 18.1171Z" fill="#FCFCFC"/>
+            <path d="M17.7453 18.1171C19.3546 19.7602 21.9998 19.7602 23.6091 18.1171L41.3545 0H0L17.7453 18.1171Z" fill="#FFFFFF"/>
           </svg>
         </div>
       </Popup>
