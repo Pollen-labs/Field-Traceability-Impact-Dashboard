@@ -112,10 +112,10 @@ const CollectionChart = ({ pageName, partnerId, timeRange }: CollectionChartProp
                   cursor={false} 
                   content={
                     <ChartTooltipContent 
-                      className="w-[320px] rounded-3xl gap-2 md:gap-3 text-fluid-sm md:text-fluid-lg p-4 md:p-6"
+                      className="w-[280px] md:w-[320px] rounded-2xl md:rounded-3xl gap-1.5 md:gap-2 text-fluid-xs md:text-fluid-sm p-3 md:p-4"
                       // Format the tooltip label (month and year)
                       labelFormatter={(value) => (
-                        <div className="font-light">
+                        <div className="font-light text-fluid-xs md:text-fluid-sm tracking-tight">
                           {new Date(value).toLocaleDateString("en-US", { month: "short",  year: "numeric" })}
                         </div>
                       )}
@@ -123,16 +123,16 @@ const CollectionChart = ({ pageName, partnerId, timeRange }: CollectionChartProp
                       formatter={(value, name, item, index) => (
                         <>
                           {/* Colored indicator matching the area fill */}
-                          <div className={`h-3 w-3 md:h-4 md:w-4 rounded-full bg-${getCssClassName(String(name))}`}/>
+                          <div className={`h-2.5 w-2.5 md:h-3 md:w-3 rounded-full bg-${getCssClassName(String(name))} flex-shrink-0`}/>
                           {/* Formatted category name (converting camelCase to space-separated sentence case) */}
-                          <div className="font-semibold text-fluid-base">{formatCamelCaseString(String(name))}</div>
+                          <div className="font-medium text-fluid-xs md:text-fluid-sm tracking-tight">{formatCamelCaseString(String(name))}</div>
                           {/* Value with unit */}
-                          <div className="ml-auto font-light text-fluid-base">{value} Kg</div>
+                          <div className="ml-auto font-light text-fluid-xs md:text-fluid-sm tracking-tight tabular-nums">{value} Kg</div>
                           {/* Show total on the last item */}
                           {index === (pageName === "Home" ? 6 : 3) && (
-                            <div className="mt-1.5 flex basis-full items-center border-t border-gray-400 pt-1.5 text-fluid-sm md:text-fluid-lg">
-                              Total
-                              <div className="ml-auto font-extralight">
+                            <div className="mt-1 md:mt-1.5 flex basis-full items-center border-t border-gray-300 pt-1.5 md:pt-2 text-fluid-xs md:text-fluid-sm">
+                              <span className="font-medium tracking-tight">Total</span>
+                              <div className="ml-auto font-light tracking-tight tabular-nums">
                                 {calculateTooltipTotal({payload: item.payload, config: chartConfig})} Kg
                               </div>
                             </div>
