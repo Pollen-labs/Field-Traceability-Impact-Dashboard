@@ -83,7 +83,7 @@ export const LocationMarker = ({ record }: LocationMarkerProps) => {
     iconUrl: `/partner-icons/${pinIcon}`,
     iconSize: [40, 40],
     iconAnchor: [20, 40],
-    popupAnchor: [0, -44],
+    popupAnchor: [0, -50],
     className: 'cursor-pointer'
   })
 

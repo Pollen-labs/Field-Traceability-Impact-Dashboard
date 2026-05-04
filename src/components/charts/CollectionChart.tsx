@@ -1,5 +1,7 @@
 import { useChartData } from "@/hooks/api/useChartData"
 import { useChartTicks } from "@/hooks/ui/useChartTicks"
+import { useMediaQuery } from "@/hooks/ui/useMediaQuery"
+import { DESKTOP_BREAKPOINT } from "@/config/constants"
 import { MaterialsChartConfig, ActivitiesChartConfig } from "@/config/charts"
 import { PageName, MaterialsChartRecord, ActivitiesChartRecord } from "@/types"
 import { Area, AreaChart, CartesianGrid, XAxis, YAxis } from "recharts"
@@ -49,10 +51,30 @@ const CollectionChart = ({ pageName, partnerId, timeRange }: CollectionChartProp
 
   // Get optimized X-axis ticks and formatter based on time range
   const { ticks, tickFormatter } = useChartTicks(records, timeRange)
+  
+  // Detect if we're on mobile/tablet (below desktop breakpoint)
+  const isDesktop = useMediaQuery(DESKTOP_BREAKPOINT)
 
   // Helper function to convert space-separated keys to camelCase for CSS classes
   const getCssClassName = (key: string): string => {
     return key.replace(/\s+(\w)/g, (_, letter) => letter.toUpperCase());
+  };
+  
+  // Calculate interval for x-axis labels based on screen size and data density
+  // On mobile with many data points, show fewer labels to prevent overlap
+  const getXAxisInterval = () => {
+    if (isDesktop) {
+      return 0; // Show all labels on desktop
+    }
+    // On mobile, show every nth label based on data density
+    const dataPointCount = records.length;
+    if (dataPointCount <= 6) {
+      return 0; // Show all if 6 or fewer points
+    } else if (dataPointCount <= 12) {
+      return 1; // Show every other label for 7-12 points
+    } else {
+      return 2; // Show every 3rd label for more than 12 points
+    }
   };
 
   return (
@@ -87,7 +109,7 @@ const CollectionChart = ({ pageName, partnerId, timeRange }: CollectionChartProp
               <AreaChart
                 accessibilityLayer
                 data={records}
-                margin={{ top: 10, right: 10, bottom: 10, left: 10 }}
+                margin={{ top: 10, right: isDesktop ? 30 : 30, bottom: 10, left: 10 }}
               >
                 <CartesianGrid vertical={false} />
                 {/* X-axis with custom tick formatting based on time range */}
@@ -98,7 +120,7 @@ const CollectionChart = ({ pageName, partnerId, timeRange }: CollectionChartProp
                   tickMargin={8}
                   ticks={ticks}              
                   tickFormatter={tickFormatter}
-                  interval={0}
+                  interval={getXAxisInterval()}
                 />
                 {/* Y-axis with simplified styling */}
                 <YAxis
