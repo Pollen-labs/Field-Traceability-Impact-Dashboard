@@ -11,7 +11,7 @@ import { ArrowUpRight } from 'lucide-react'
  */
 const FooterNavLinks = () => {
   return (
-    <div className="flex flex-col items-center gap-4 text-base font-extralight text-center lg:flex-row lg:flex-nowrap lg:justify-end lg:gap-10 lg:text-right">
+    <div className="flex flex-col items-center gap-4 text-fluid-base font-extralight text-center lg:flex-row lg:flex-nowrap lg:justify-end lg:gap-10 lg:text-right">
       <Link
         to="/locations"
         activeProps={{
@@ -80,7 +80,7 @@ const FooterNavLinks = () => {
 const NavFooter = () => {
 	return (
 		<footer className="px-8 pt-12 pb-16">
-      <div className="m-auto flex max-w-[1440px] flex-col gap-10">
+      <div className="m-auto flex max-w-[1440px] xl:max-w-[1600px] 2xl:max-w-[1920px] flex-col gap-10">
         {/* Top area: logo and navigation (side-by-side on large screens and above) */}
         <div className="flex flex-col items-center gap-8 text-center md:gap-10 lg:flex-row lg:items-start lg:justify-between">
           {/* Logo with subtitle keeps consistent branding in the footer */}
@@ -92,8 +92,8 @@ const NavFooter = () => {
         </div>
 
         {/* Bottom row: Pollen Labs credit */}
-        <div className="flex flex-col items-center gap-2 border-t border-softBlack pt-4 text-center md:flex-row md:items-center md:justify-between md:text-left">
-          <p className="text-sm font-extralight">
+        <div className="flex flex-col items-center gap-2 border-t border-softBlack pt-4 text-center md:flex-row md:items-center md:justify-center">
+          <p className="text-fluid-sm font-extralight">
             Conceptualised and built by
           </p>
           <a

@@ -37,7 +37,7 @@ function VesselsComponent() {
   const isDesktop = useMediaQuery(DESKTOP_BREAKPOINT)
 
   return (
-    <main className='flex flex-col justify-center items-center gap-8 md:gap-16 m-auto md:pt-8 lg:pt-16 max-w-[1440px]'>
+    <main className='flex flex-col justify-center items-center gap-8 md:gap-16 m-auto md:pt-8 lg:pt-16 max-w-[1440px] xl:max-w-[1600px] 2xl:max-w-[1920px]'>
       <PageHero title={heroTitle} description={heroDescription} />
       <StatsBar pageName='Vessels'/>
 
@@ -52,7 +52,7 @@ function VesselsComponent() {
         />
         
         {/* Mobile Title */}
-        <h2 className="block lg:hidden text-xl font-semibold mt-8 mb-4 px-1">Vessels list</h2>
+        <h2 className="block lg:hidden text-fluid-xl font-semibold mt-8 mb-4 px-1">Vessels list</h2>
 
         {/* Remove top/bottom padding on mobile, keep for desktop */}
         <div className='overflow-hidden rounded-3xl lg:pt-8 lg:pb-16'>

@@ -116,17 +116,17 @@ function VesselDetailComponent() {
             className="block text-current no-underline hover:text-current"
           >
             {/* Add Waste Collected info */}
-            <div className='border border-darkSand rounded-2xl p-4 text-sm'> 
+            <div className='border border-darkSand rounded-2xl p-4 text-fluid-sm'> 
                 <div className='flex justify-between items-start mb-1'>
-                    <span className='text-sm text-gray-600'>{item.dateFormatted || 'N/A'}</span>
+                    <span className='text-fluid-sm text-gray-600'>{item.dateFormatted || 'N/A'}</span>
                 </div>
-                <p className='font-semibold text-2xl mb-1'>{item.action || 'N/A'}</p>
+                <p className='font-semibold text-fluid-2xl mb-1'>{item.action || 'N/A'}</p>
                 {/* Add Waste Collected info */}
-                <p className='text-base text-gray-800 mb-6'>Wasted collected: {item.totalInputWeight !== undefined ? `${item.totalInputWeight} Kg` : 'N/A'}</p> 
-                <p className='text-sm text-gray-700 mb-1'>
+                <p className='text-fluid-base text-gray-800 mb-6'>Wasted collected: {item.totalInputWeight !== undefined ? `${item.totalInputWeight} Kg` : 'N/A'}</p> 
+                <p className='text-fluid-sm text-gray-700 mb-1'>
                     Submitted by: {item.submittedBy ? formatAddress(item.submittedBy, 4, 5) : 'N/A'}
                 </p>
-                <div className='text-sm text-gray-700 flex items-center'>
+                <div className='text-fluid-sm text-gray-700 flex items-center'>
                     Attestation UID: {item.id ? formatAddress(item.id, 10, 10) : 'N/A'}
                     <ArrowUpRight size={14} strokeWidth={1.5} className="ml-1 flex-shrink-0" />
                 </div>
@@ -137,20 +137,20 @@ function VesselDetailComponent() {
   // --- End Define Mobile Card Renderer ---
 
   return (
-    <main className='flex flex-col justify-center items-center gap-8 m-auto pt-0 pb-16 lg:pb-32 md:pt-8 lg:pt-16 max-w-[1440px]'>
+    <main className='flex flex-col justify-center items-center gap-8 m-auto pt-0 pb-16 lg:pb-32 md:pt-8 lg:pt-16 max-w-[1440px] xl:max-w-[1600px] 2xl:max-w-[1920px]'>
       {/* Vessel Header - Displays vessel name, country, port, type and collector ID */}      
       <DetailPageHeading name={name} country={country} registered_port={port} type={type} collector_id={collector_identity} />
       
       {/* Statistics Section - Shows key metrics about the vessel's activities */}
       <section className="border border-primary rounded-3xl overflow-hidden text-center w-full">
-        <h2 className="font-bold text-4xl md:text-5xl tracking-tight pt-12 lg:pb-12 px-4 md:px-10 lg:px-20">{heading}</h2>
+        <h2 className="font-bold text-fluid-4xl tracking-tight leading-tight pt-12 lg:pb-12 px-4 md:px-10 lg:px-20">{heading}</h2>
         {/* Stats dashboard with vessel-specific metrics */}
         <StatsBar pageName='VesselDetail' partnerId={id}/>
         <Separator />
         {/* Additional contextual information about the statistics */}
         <div className='py-12 px-4 md:px-10 lg:px-20'>
-          <h3 className='font-bold text-lg md:text-2xl tracking-tight leading-tight px-12 pb-2'>{statSubtitle}</h3>
-          <p className='font-extralight tracking-tight leading-tight'>{statDescription}</p>
+          <h3 className='font-bold text-fluid-xl tracking-tight leading-tight px-12 pb-2'>{statSubtitle}</h3>
+          <p className='font-extralight text-fluid-base tracking-tight leading-tight'>{statDescription}</p>
         </div>
       </section>
 
@@ -159,14 +159,14 @@ function VesselDetailComponent() {
         {/* Chart header with title and time range filters */}
         <article className='px-4 py-8 md:p-12 md:pb-0 text-center'>
           <div className='flex flex-col items-center gap-4'>
-            <h2 className='font-bold text-4xl tracking-tight pb-4'>Waste removed by action type</h2>
+            <h2 className='font-bold text-fluid-4xl tracking-tight leading-tight pb-4'>Waste removed by action type</h2>
             {/* Time range filter buttons */}
             <div className="flex flex-row justify-center gap-1 md:gap-2">
               {dateChoices.map((choice) => (
                 <Button
                   key={choice}
                   variant={selectedChartDates === choice ? 'default' : 'outline'}
-                  className='text-xs'
+                  className='text-fluid-xs'
                   onClick={() => setSelectedChartDates(choice)}
                 >
                   {choice}
@@ -203,8 +203,8 @@ function VesselDetailComponent() {
 
       {/* Attestations Section - Displays blockchain verification records */}
       <section className='flex flex-col gap-3 my-6 md:my-20 w-full md:w-[100%]'>
-        <h2 className='font-bold text-3xl md:text-5xl tracking-tight'>Attestations</h2>
-        <p className='w-full md:w-[70%] font-extralight tracking-tight leading-tight md:leading-tight'>{attestationDescriptions["Vessel"]}</p>
+        <h2 className='font-bold text-fluid-4xl tracking-tight leading-tight'>Attestations</h2>
+        <p className='w-full md:w-[70%] font-extralight text-fluid-base tracking-tight leading-tight'>{attestationDescriptions["Vessel"]}</p>
         <Separator className='bg-softBlack my-1'/>
         <AttestationsTable
           data={attestationsData}

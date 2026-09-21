@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { useMapData } from '@/hooks/api/useMapData'
 import { useMapState } from '@/hooks/ui/useMapState'
 import { useProcessedRecords } from '@/hooks/ui/useProcessedRecords'
@@ -6,6 +6,7 @@ import { MapStateController } from '@/components/maps/MapStateController'
 import { MapSizeHandler } from '@/components/maps/MapSizeHandler'
 import { LocationMarker } from '@/components/maps/LocationMarker'
 import { TracingLines } from '@/components/maps/TracingLines'
+import { MapSkeleton } from '@/components/global/MapSkeleton'
 import { PageName, PartnerType, MapItem, TraceItem, ProductPageData } from "@/types"
 import { MapContainer, TileLayer, useMap } from 'react-leaflet'
 import L, { LatLngBoundsExpression } from 'leaflet'
@@ -80,11 +81,15 @@ const ActivityMap = ({ pageName, partnerType, productId }: ActivityMapProps) => 
   }, []);
 
   // Helper component to fit map bounds
+  // Only fits bounds if there's no saved map state (first time viewing)
   const MapBoundsFitter = ({ locations }: { locations: MapItem[] }) => {
     const map = useMap();
+    const [mapState] = useMapState(pageName);
+    const hasFittedRef = useRef(false); // Track if we've already fitted bounds
 
     useEffect(() => {
       if (!locations || locations.length === 0) return;
+      if (hasFittedRef.current) return; // Don't refit if we've already done it
 
       // Filter out locations with invalid coordinates before calculating bounds
       const validLocations = locations.filter(loc => 
@@ -95,50 +100,77 @@ const ActivityMap = ({ pageName, partnerType, productId }: ActivityMapProps) => 
       
       if (validLocations.length === 0) return;
 
-      const bounds = L.latLngBounds(validLocations.map(loc => loc.coordinates as L.LatLngTuple));
-      
-      if (bounds.isValid()) {
-        map.fitBounds(bounds, { padding: [50, 50] }); // Add padding
-      } else if (validLocations.length === 1) {
-         // If only one marker, center on it with a reasonable zoom level
-         map.setView(validLocations[0].coordinates as L.LatLngTuple, 13); 
+      // Only fit bounds if there's no saved state (first time viewing this page)
+      // If there's saved state, MapStateController will handle the positioning
+      if (!mapState) {
+        const bounds = L.latLngBounds(validLocations.map(loc => loc.coordinates as L.LatLngTuple));
+        
+        if (bounds.isValid()) {
+          // Use a small delay to ensure map is fully initialized and MapStateController has run
+          const timeoutId = setTimeout(() => {
+            // Double-check mapState hasn't been set in the meantime
+            // Note: mapState check here is stale closure, but that's okay - 
+            // we check it before setting timeout
+            // Use asymmetric padding to center content vertically in larger viewport
+            const mapContainer = map.getContainer();
+            const containerHeight = mapContainer?.offsetHeight || 500;
+            const verticalPadding = Math.max(50, containerHeight * 0.2); // 20% of height or minimum 50px
+            map.fitBounds(bounds, { padding: [verticalPadding, 50], animate: false });
+            hasFittedRef.current = true;
+          }, 200); // Increased delay to let MapStateController run first
+
+          return () => clearTimeout(timeoutId);
+        } else if (validLocations.length === 1) {
+          // If only one marker, center on it with a reasonable zoom level
+          const timeoutId = setTimeout(() => {
+            map.setView(validLocations[0].coordinates as L.LatLngTuple, 13, { animate: false });
+            hasFittedRef.current = true;
+          }, 200);
+
+          return () => clearTimeout(timeoutId);
+        }
+      } else {
+        // There's saved state, so MapStateController will handle positioning
+        // Just mark as fitted to prevent future refits
+        hasFittedRef.current = true;
       }
 
-    }, [locations, map]); // Rerun when locations or map instance changes
+    }, [locations, map, mapState]); // Rerun when locations, map, or mapState changes
 
     return null; // This component doesn't render anything itself
   }
 
-  // Display loading/error states with appropriate messages
-  if (isPending || error) {
+  // Display loading skeleton or error state
+  if (isPending) {
+    return <MapSkeleton />
+  }
+
+  if (error) {
     return (
-      <article className='w-full h-[400px] md:h-[500px] lg:h-[700px] pt-3 text-center'>
-        <>
-        {isPending && <p>Loading map...</p>}
-        {error && <p>An error has occurred: {error.message}</p>}
-        </>
+      <article className='w-full h-[400px] md:h-[500px] lg:h-[1200px] pt-3 text-center flex flex-col justify-center items-center'>
+        <p className="text-fluid-lg">An error has occurred: {error.message}</p>
       </article>
     )
   }
 
 	return (
     // Map container with responsive height and conditional styling based on page type
-    <article className={`w-full h-[400px] md:h-[500px] lg:h-[700px] ${pageName==='Home' ? 'pt-3': 'overflow-hidden rounded-3xl'}`}>
+    <article className={`w-full h-[400px] md:h-[500px] lg:h-[1200px] ${pageName==='Home' ? 'pt-3': 'overflow-hidden '}`}>
       <MapContainer 
-        className='h-full z-0' 
+        className='h-full w-full z-4' 
         // center={mapState.center} // <-- REMOVED
         // zoom={mapState.zoom} // <-- REMOVED
         scrollWheelZoom={true}
         dragging={true}
         doubleClickZoom={true}
         touchZoom={true}
-        zoomControl={true}
+        zoomControl={false}
         keyboard={true}
-        attributionControl={true}
+        attributionControl={false}
       >
         {/* OpenStreetMap tile layer with error handling */}
         <TileLayer
-          attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+          attribution=''
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
           className="[filter:saturate(1.1)]"
           eventHandlers={{
@@ -162,7 +194,7 @@ const ActivityMap = ({ pageName, partnerType, productId }: ActivityMapProps) => 
             <LocationMarker key={record.id} record={record} />
         ))
         : 
-          <div className='flex flex-col text-center text-lg md:text-2xl font-semibold px-20 pt-28 md:pt-72'>
+          <div className='flex flex-col text-center text-fluid-xl font-semibold px-20 pt-28 md:pt-72'>
             <p>sorry!</p>
             <p>We aren't able to mark our locations right now.</p>
           </div>

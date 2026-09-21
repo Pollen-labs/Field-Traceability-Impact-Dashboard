@@ -96,17 +96,17 @@ function ProductDetailComponent() {
             className="block text-current no-underline hover:text-current"
           >
             {/* Same card structure, add company info */}
-            <div className='border border-darkSand rounded-2xl p-4 text-sm'> 
+            <div className='border border-darkSand rounded-2xl p-4 text-fluid-sm'> 
                 <div className='flex justify-between items-start mb-1'>
-                    <span className='text-sm text-gray-600'>{item.dateFormatted || 'N/A'}</span>
+                    <span className='text-fluid-sm text-gray-600'>{item.dateFormatted || 'N/A'}</span>
                 </div>
-                <p className='font-semibold text-2xl mb-1'>{item.action || 'N/A'}</p> {/* Reduced margin */}
+                <p className='font-semibold text-fluid-2xl mb-1'>{item.action || 'N/A'}</p> {/* Reduced margin */}
                 {/* Add Company info */}
-                <p className='text-sm text-gray-800 mb-6'>By: {item.company || 'N/A'}</p> 
-                <p className='text-sm text-gray-700 mb-1'>
+                <p className='text-fluid-sm text-gray-800 mb-6'>By: {item.company || 'N/A'}</p> 
+                <p className='text-fluid-sm text-gray-700 mb-1'>
                     Submitted by: {item.submittedBy ? formatAddress(item.submittedBy, 4, 5) : 'N/A'}
                 </p>
-                <div className='text-sm text-gray-700 flex items-center'>
+                <div className='text-fluid-sm text-gray-700 flex items-center'>
                     Attestation UID: {item.id ? formatAddress(item.id, 10, 10) : 'N/A'}
                     <ArrowUpRight size={14} strokeWidth={1.5} className="ml-1 flex-shrink-0" />
                 </div>
@@ -117,7 +117,7 @@ function ProductDetailComponent() {
   // --- End Define Mobile Card Renderer ---
 
   return (
-    <main className='flex flex-col justify-center items-center gap-8 m-auto pb-16 md:pb-24 md:pt-8 lg:pt-16 max-w-[1440px]'>
+    <main className='flex flex-col justify-center items-center gap-8 m-auto pb-16 md:pb-24 md:pt-8 lg:pt-16 max-w-[1440px] xl:max-w-[1600px] 2xl:max-w-[1920px]'>
       {/* Product Header - Displays product name and primary information */} 
       <PageHeading productId={id} dataCategory="Heading"/>
       {/* Traceability Section - Shows interactive map of product journey */}
@@ -162,8 +162,8 @@ interface SectionProps {
 // reusable component for product page sections with standarized styling
 const Section = ({ title, description, children }: SectionProps) => (
   <section className='flex flex-col gap-3 w-full'>
-    <h2 className='font-bold text-3xl md:text-4xl lg:text-5xl tracking-tight'>{title}</h2>
-    <p className='w-full md:w-[70%] font-extralight tracking-tight leading-tight md:leading-tight'>
+    <h2 className='font-bold text-fluid-4xl tracking-tight leading-tight'>{title}</h2>
+    <p className='w-full md:w-[70%] font-extralight tracking-tight leading-tight'>
       {description}
     </p>
     <Separator className='bg-softBlack my-1'/>

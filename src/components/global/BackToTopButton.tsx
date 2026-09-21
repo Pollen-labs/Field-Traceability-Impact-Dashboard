@@ -17,7 +17,7 @@ import { CircleArrowUp } from "lucide-react"
 const BackToTopButton = () => {
   return (
     <div 
-      className='flex flex-row items-center gap-2 font-normal text-ocean cursor-pointer'
+      className='flex flex-row items-center gap-2 font-normal text-fluid-sm text-ocean cursor-pointer'
       onClick={() => window.scrollTo({ top: 0, behavior: 'smooth'})}
     >
       {/* Arrow icon pointing upward */}

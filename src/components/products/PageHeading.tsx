@@ -11,6 +11,9 @@ import { useMediaQuery } from '@/hooks/ui/useMediaQuery'
 import { DESKTOP_BREAKPOINT } from '@/config/constants'
 import { ProductData } from '@/types'
 import { ArrowUpRight } from 'lucide-react'
+import { useIntersectionObserver } from '@/hooks/ui/useIntersectionObserver'
+import { clsx } from 'clsx'
+import { ProductHeadingSkeleton } from '@/components/global/ProductHeadingSkeleton'
 
 interface PageHeadingProps {
   productId: string               // Unique identifier for the product
@@ -25,18 +28,25 @@ const PageHeading = ({ productId, dataCategory }: PageHeadingProps) => {
   const { isPending, error, data } = useProductData({ productId, dataCategory })
   const { type, name, manufacturedBy, image, description, UID } = data?.product || {}
 
+  const [headingRef, isHeadingVisible] = useIntersectionObserver({
+    threshold: 0.1,
+    rootMargin: '0px',
+    triggerOnce: true,
+  })
+
   /*
   * Loading/Error state view
-  * Shows loading message or error with dolphin illustration
+  * Shows skeleton loader for seamless loading experience
   */
-  if (isPending || error) {
+  if (isPending) {
+    return <ProductHeadingSkeleton />
+  }
+
+  if (error) {
     return (
       <article className="w-full lg:h-[598px] flex flex-col justify-center items-center text-center text-lg px-10">
-          <>
-            {isPending && <p>Loading product data...</p>}
-            {error && <p>Sorry! We are not able to show the product information at this time.</p>}
-            <img src="/illustrations/dolphin.svg" alt="dolphin illustration" className="w-[300px] h-[300px]"/>
-          </>
+        <p>Sorry! We are not able to show the product information at this time.</p>
+        <img src="/illustrations/dolphin.svg" alt="dolphin illustration" className="w-[300px] h-[300px]"/>
       </article>
     )
   }
@@ -48,8 +58,16 @@ const PageHeading = ({ productId, dataCategory }: PageHeadingProps) => {
         {/* Product Information Section */}
         <article className="lg:w-[55%] flex flex-col gap-0.5 md:gap-2 lg:gap-4 font-light">
           <p className="text-base md:text-base font-extralight">{type}</p>
-          <h1 className="font-bold text-5xl md:text-6xl lg:text-7xl tracking-tight">{name}</h1>
-          <p className="text-base md:text-base font-extralight">Manufactured by:<strong> {manufacturedBy}</strong></p>
+          <h1 
+            ref={headingRef}
+            className={clsx(
+              "font-bold text-fluid-6xl tracking-tight leading-none animate-on-scroll",
+              isHeadingVisible && 'animate-fade-slide-up'
+            )}
+          >
+            {name}
+          </h1>
+          <p className="text-fluid-base font-extralight">Manufactured by:<strong> {manufacturedBy}</strong></p>
           
           {/* Product image for mobile view */}
           {!isDesktop && 
@@ -58,7 +76,7 @@ const PageHeading = ({ productId, dataCategory }: PageHeadingProps) => {
             </div>
           }
           
-          <p className="font-extralight text-lg md:text-xl tracking-tight leading-tight md:leading-tight my-4">{description}</p>
+          <p className="font-extralight text-fluid-xl tracking-tight leading-tight my-4">{description}</p>
           
           {/* Blockchain Attestation Information */}
           <div className="bg-sand rounded-xl p-4 my-4">

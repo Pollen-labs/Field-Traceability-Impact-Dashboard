@@ -36,21 +36,21 @@ const CustomChartLegend = ({ category }: ChartLegendProps) => {
   };
   
   return (
-    <article className="w-full flex justify-center p-8 md:px-28 lg:py-0">
+    <article className="w-full flex justify-center px-4 py-8 md:px-6 lg:px-8 lg:py-0">
       {/* Responsive grid layout with different column counts based on screen size */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 max-w-6xl">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 max-w-6xl xl:max-w-7xl 2xl:max-w-[1400px]">
         {/* Map through legend items and create entry for each */}
         {Object.entries(legendInfo).map(([type, description]) => (
           <div key={type} className="flex items-start gap-2">
-            {/* Color indicator circle matching chart colors */}
-            <div className="flex-shrink-0">
+            {/* Color indicator circle matching chart colors - aligned with first line of text */}
+            <div className="flex-shrink-0 self-start mt-0.5">
               <div className={`h-6 w-6 rounded-full bg-${getCssClassName(type)}`}></div>
             </div>
-            <div>
+            <div className="flex-1">
               {/* Category name with camelCase formatting (e.g., "mixedPlastic" → "Mixed plastic") */}
-              <h3 className="text-lg font-bold">{formatCamelCaseString(type)}</h3>
+              <h3 className="text-fluid-lg font-bold leading-tight">{formatCamelCaseString(type)}</h3>
               {/* Detailed description of the category */}
-              <p className="text-sm font-extralight leading-tight">{description}</p>
+              <p className="text-fluid-sm font-extralight leading-tight">{description}</p>
             </div>
           </div>
         ))}

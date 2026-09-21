@@ -52,7 +52,7 @@ const TableActionsBar = ({
       {/* Partner Type Filter Buttons */}
       {/* Hidden on mobile (< lg breakpoint) for space efficiency */}
       <div className='hidden lg:flex items-center md:gap-2'>
-        <p className='text-xs md:text-sm font-extralight'>{pageName === 'Locations' ? 'Location type:' : 'Vessel type:'}</p>
+        <p className='text-fluid-xs font-extralight'>{pageName === 'Locations' ? 'Location type:' : 'Vessel type:'}</p>
         <div className='flex flex-row justify-center gap-2'>
           {partnerTypes.map((type) => (
             <Button

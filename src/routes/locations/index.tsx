@@ -42,7 +42,7 @@ function LocationsComponent() {
   const isDesktop = useMediaQuery(DESKTOP_BREAKPOINT)
 
   return (
-    <main className='flex flex-col justify-center items-center gap-8 md:gap-16 m-auto md:pt-8 lg:pt-16 max-w-[1440px]'>
+    <main className='flex flex-col justify-center items-center gap-8 md:gap-16 m-auto md:pt-8 lg:pt-16 max-w-[1440px] xl:max-w-[1600px] 2xl:max-w-[1920px]'>
       <PageHero title={heroTitle} description={heroDescription} /> 
       <StatsBar pageName='Locations'/>
 
@@ -62,7 +62,7 @@ function LocationsComponent() {
         {/* Mobile Header: Title + View Toggle */}
         <div className="flex lg:hidden justify-between items-center mt-8 mb-4 px-1">
           {/* Mobile Title */}
-          <h2 className="text-xl font-semibold mb-1">Locations list</h2>
+          <h2 className="text-fluid-xl font-semibold mb-1">Locations list</h2>
 
           {/* Mobile View Toggle Buttons */}
           {viewTypes && setSelectedViewType ? (

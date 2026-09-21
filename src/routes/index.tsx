@@ -10,6 +10,9 @@ import { useHomeMaterialBreakdown } from '@/hooks/api/useHomeMaterialBreakdown'
 import { Button } from "@/components/ui/button"
 import { BackToTopButton } from '@/components/global/BackToTopButton'
 import { homePageTexts, dateChoices } from '@/config/texts'
+import { useIntersectionObserver } from '@/hooks/ui/useIntersectionObserver'
+import { clsx } from 'clsx'
+import { ChartSkeleton } from '@/components/global/ChartSkeleton'
 
 /**
  * Creates a route for the home page using TanStack Router
@@ -72,22 +75,59 @@ function HomeComponent() {
     )
     : "While all waste has been collected through the efforts of our partner fishermen, the total sorted weight is being calculated. This chart will break down sorted plastic by specific material types..." // Adjusted fallback text
 
+  // Intersection Observer hooks for scroll-triggered animations
+  const [heroButtonRef, isHeroButtonVisible] = useIntersectionObserver({
+    threshold: 0.1,
+    rootMargin: '0px',
+    triggerOnce: true,
+  })
+
+  const [impactHeadingRef, isImpactHeadingVisible] = useIntersectionObserver({
+    threshold: 0.1,
+    rootMargin: '0px',
+    triggerOnce: true,
+  })
+
+  const [wasteChartHeadingRef, isWasteChartHeadingVisible] = useIntersectionObserver({
+    threshold: 0.1,
+    rootMargin: '0px',
+    triggerOnce: true,
+  })
+
+  const [collabHeadingRef, isCollabHeadingVisible] = useIntersectionObserver({
+    threshold: 0.1,
+    rootMargin: '0px',
+    triggerOnce: true,
+  })
+
+  const [collabButtonRef, isCollabButtonVisible] = useIntersectionObserver({
+    threshold: 0.1,
+    rootMargin: '0px',
+    triggerOnce: true,
+  })
+
   return (
-    <main className='flex flex-col justify-center items-center gap-8 m-auto pb-16 md:pb-24 md:pt-8 lg:pt-16 max-w-[1440px]'>
+    <main className='flex flex-col justify-center items-center gap-8 m-auto pb-16 md:pb-24 md:pt-8 lg:pt-16 max-w-[1440px] xl:max-w-[1600px] 2xl:max-w-[1920px]'>
       {/* Hero Section - Displays page title, description and scrolling helper */}
-      <section className='flex flex-col items-center gap-6'>
+      <section className='flex flex-col items-center gap-6 w-full max-w-[1200px] xl:max-w-[1400px] 2xl:max-w-[1600px]'>
         <PageHero title={heroTitle} description={heroDescription}/>
         <Link 
           to="/products/$id" 
           params={{ id: '4767' }}
         >
-          <Button className='px-8 mb-8'>
+          <Button 
+            ref={heroButtonRef}
+            className={clsx(
+              'px-8 mb-8 animate-on-scroll',
+              isHeroButtonVisible && 'animate-fade-slide-up-button'
+            )}
+          >
             See sustainable tracing in action
           </Button>
         </Link>
       </section>
       {/* Impact Visualization Section - Shows key stats and activity map */}
-      <section className='overflow-hidden border border-primary rounded-3xl'>
+      <section className='overflow-hidden border border-primary rounded-3xl w-full max-w-[1440px] xl:max-w-[1600px] 2xl:max-w-[1920px]'>
         {/* Hero image with overlay text */}
         <article className='relative w-full pb-8'>
           <img 
@@ -96,27 +136,43 @@ function HomeComponent() {
             className='object-cover bg-center h-[350px] md:h-[450px] lg:h-auto w-full'
           />
           <div className='absolute inset-0 flex flex-col items-center justify-center text-center text-sand'>
-            <p className='w-full font-bold text-5xl md:text-6xl lg:text-7xl tracking-tight px-10 pt-4 md:pt-10'>{impactSectionTitle}</p>
-            <p className='w-[90%] md:w-[60%] font-extralight text-lg md-text-xl tracking-tight leading-tight md:leading-tight py-2 md:py-6'>{impactSectionDescription}</p>
+            <p 
+              ref={impactHeadingRef}
+              className={clsx(
+                'w-full font-bold text-fluid-6xl tracking-tight leading-tight px-10 pt-4 md:pt-10 animate-on-scroll',
+                isImpactHeadingVisible && 'animate-fade-slide-up'
+              )}
+            >
+              {impactSectionTitle}
+            </p>
+            <p className='w-[90%] md:w-[60%] font-extralight text-fluid-lg tracking-tight leading-tight py-2 md:py-6'>{impactSectionDescription}</p>
           </div>
         </article>
         <StatsBar pageName='Home'/>
         <ActivityMap pageName='Home'/>
       </section>
       {/* Waste Collection Data Section - Displays charts with time filtering */}
-      <section className='flex flex-col border border-primary rounded-3xl pb-4'>
+      <section className='flex flex-col border border-primary rounded-3xl pb-fluid-sm overflow-hidden w-full max-w-[1440px] xl:max-w-[1600px] 2xl:max-w-[1920px]'>
         {/* Chart header with title, description and time range filters */}
-        <article className='px-4 py-8 md:p-12 md:pb-0 text-center'>
-          <p className='font-bold text-4xl tracking-tight pb-4'>{wasteChartTitle}</p>
-          <div className='flex flex-col items-center gap-4'>
-            <p className='font-extralight text-xl md-text-xl tracking-tight leading-tight md:leading-tight text-center md:px-20'>{wasteChartDescription}</p>
+        <article className='px-4 pt-fluid-2xl pb-fluid-lg md:px-fluid-md text-center'>
+          <p 
+            ref={wasteChartHeadingRef}
+            className={clsx(
+              'font-bold text-fluid-4xl tracking-tight leading-tight pb-fluid-md animate-on-scroll',
+              isWasteChartHeadingVisible && 'animate-fade-slide-up'
+            )}
+          >
+            {wasteChartTitle}
+          </p>
+          <div className='flex flex-col items-center space-fluid-md'>
+            <p className='font-extralight text-fluid-xl tracking-tight leading-tight text-center md:px-20 pt-fluid-sm'>{wasteChartDescription}</p>
             {/* Time range filter buttons */}
             <div className='flex flex-row justify-center gap-1 md:gap-2'>        
               {dateChoices.map((choice) => (
                 <Button 
                   key={choice}
                   variant={selectedChartDates === choice ? "default" : "outline"}
-                  className='text-xs'
+                  className='text-fluid-xs'
                   onClick={() => setSelectedChartDates(choice)}
                 >
                   {choice}
@@ -129,7 +185,7 @@ function HomeComponent() {
         <CollectionChart pageName='Home' timeRange={selectedChartDates}/>
         <CustomChartLegend category='materials' />
 
-        <article className='font-extralight text-base md:text-lg text-center p-6 md:p-12'>
+        <article className='font-extralight text-fluid-base text-center py-fluid-xl px-4 md:px-fluid-lg'>
           <p>
             To explore the individual collection activities of our partners, please view our
             <Link to="/locations" className='font-bold'>&nbsp;&nbsp;locations page</Link>
@@ -137,11 +193,11 @@ function HomeComponent() {
         </article>
       </section>
       {/* --- New Section for Material Breakdown Chart --- */}
-      <section className='w-full border border-primary rounded-3xl overflow-hidden p-6 md:p-12'> 
+      <section className='w-full border border-primary rounded-3xl overflow-hidden pt-fluid-2xl px-6 pb-6 md:px-12 md:pb-12'> 
         {isLoadingMaterials ? (
-          <div>Loading material breakdown...</div>
+          <ChartSkeleton />
         ) : materialError ? (
-          <div>Error loading material breakdown: {materialError.message}</div>
+          <div className="text-center text-fluid-lg py-8">Error loading material breakdown: {materialError.message}</div>
         ) : materialData ? (
           <MaterialBreakdownChart 
             data={materialData} 
@@ -149,17 +205,33 @@ function HomeComponent() {
             description={breakdownDescription}
           />
         ) : (
-          <div>No material breakdown data available.</div>
+          <div className="text-center text-fluid-lg py-8">No material breakdown data available.</div>
         )}
       </section>
       {/* --- End New Section --- */}
 
       {/* Collaboration Section - Information about the project with CTA */}
       <section className='flex flex-col items-center gap-8 m-auto w-full lg:w-[85%] text-center tracking-tight px-4 md:px-0 mt-20 mb-16'>
-        <p className='font-bold text-3xl md:text-5xl tracking-tight'>{collabSectionTitle}</p>
-        <p className='w-full text-lg md-text-lg font-extralight leading-tight md:leading-tight'>{collabSectionDescription}</p>
+        <p 
+          ref={collabHeadingRef}
+          className={clsx(
+            'font-bold text-fluid-4xl tracking-tight leading-tight animate-on-scroll',
+            isCollabHeadingVisible && 'animate-fade-slide-up'
+          )}
+        >
+          {collabSectionTitle}
+        </p>
+        <p className='w-full text-fluid-lg font-extralight leading-tight'>{collabSectionDescription}</p>
         <Link to="/about" >
-          <Button className='px-8'>Learn more about how the hub works</Button>        
+          <Button 
+            ref={collabButtonRef}
+            className={clsx(
+              'px-8 animate-on-scroll',
+              isCollabButtonVisible && 'animate-fade-slide-up-button'
+            )}
+          >
+            Learn more about how the hub works
+          </Button>        
         </Link>
         {/* Button to scroll back to top of page */}
         <BackToTopButton />

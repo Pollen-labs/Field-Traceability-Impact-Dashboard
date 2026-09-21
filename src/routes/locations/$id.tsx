@@ -19,6 +19,8 @@ import { useAttestationData } from "@/hooks/api/useAttestationData"
 import { ArrowUpRight } from 'lucide-react'
 import { useLocationMaterialBreakdown } from "@/hooks/api/useLocationMaterialBreakdown";
 import { MaterialBreakdownChart } from "@/components/charts/MaterialBreakdownChart";
+import { useIntersectionObserver } from '@/hooks/ui/useIntersectionObserver'
+import { clsx } from 'clsx'
 
 /**
  * Creates a route for the location detail page using TanStack Router
@@ -137,15 +139,15 @@ function LocationDetailComponent() {
             rel="noopener noreferrer" 
             className="block text-current no-underline hover:text-current"
           >
-            <div className='border border-darkSand rounded-2xl p-4 text-sm'> 
+            <div className='border border-darkSand rounded-2xl p-4 text-fluid-sm'> 
                 <div className='flex justify-between items-start mb-1'>
-                    <span className='text-sm text-gray-600'>{item.dateFormatted || 'N/A'}</span>
+                    <span className='text-fluid-sm text-gray-600'>{item.dateFormatted || 'N/A'}</span>
                 </div>
-                <p className='font-semibold text-2xl mb-6'>{item.action || 'N/A'}</p>
-                <p className='text-sm text-gray-700 mb-1'>
+                <p className='font-semibold text-fluid-2xl mb-6'>{item.action || 'N/A'}</p>
+                <p className='text-fluid-sm text-gray-700 mb-1'>
                     Submitted by: {item.submittedBy ? formatAddress(item.submittedBy, 4, 5) : 'N/A'}
                 </p>
-                <div className='text-sm text-gray-700 flex items-center'>
+                <div className='text-fluid-sm text-gray-700 flex items-center'>
                     Attestation UID: {item.id ? formatAddress(item.id, 10, 10) : 'N/A'}
                     <ArrowUpRight size={14} strokeWidth={1.5} className="ml-1 flex-shrink-0" />
                 </div>
@@ -175,8 +177,33 @@ function LocationDetailComponent() {
   };
   // --- End Helper Function ---
 
+  // Intersection Observer hooks for scroll-triggered animations
+  const [headingRef, isHeadingVisible] = useIntersectionObserver({
+    threshold: 0.1,
+    rootMargin: '0px',
+    triggerOnce: true,
+  })
+
+  const [statSubtitleRef, isStatSubtitleVisible] = useIntersectionObserver({
+    threshold: 0.1,
+    rootMargin: '0px',
+    triggerOnce: true,
+  })
+
+  const [actionTypeHeadingRef, isActionTypeHeadingVisible] = useIntersectionObserver({
+    threshold: 0.1,
+    rootMargin: '0px',
+    triggerOnce: true,
+  })
+
+  const [attestationsHeadingRef, isAttestationsHeadingVisible] = useIntersectionObserver({
+    threshold: 0.1,
+    rootMargin: '0px',
+    triggerOnce: true,
+  })
+
   return (
-    <main className="flex flex-col justify-center items-center gap-8 m-auto pt-0 pb-16 lg:pb-32 md:pt-8 lg:pt-16 max-w-[1440px]">
+    <main className="flex flex-col justify-center items-center gap-8 m-auto pt-0 pb-16 lg:pb-32 md:pt-8 lg:pt-16 max-w-[1440px] xl:max-w-[1600px] 2xl:max-w-[1920px]">
       {/* Location Header - Displays location name, country, coordinates, type and blockchain addresses */}
       <DetailPageHeading
         name={name}
@@ -189,8 +216,16 @@ function LocationDetailComponent() {
       {/* Main Information Section - Shows partner description and statistics */}
       <section className="border border-primary rounded-3xl overflow-hidden text-center">
         <div className='pt-12 lg:pb-12 px-4 md:px-10 lg:px-20'>
-          <h2 className="font-bold text-4xl md:text-5xl tracking-tight pb-2">{heading}</h2>
-          <p className="font-extralight text-sm md:text-lg tracking-tight leading-tight md:leading-tight">{description}</p>       
+          <h2 
+            ref={headingRef}
+            className={clsx(
+              "font-bold text-fluid-4xl tracking-tight leading-tight pb-2 animate-on-scroll",
+              isHeadingVisible && 'animate-fade-slide-up'
+            )}
+          >
+            {heading}
+          </h2>
+          <p className="font-extralight text-fluid-lg tracking-tight leading-tight">{description}</p>       
         </div>
         {/* Stats dashboard with location-specific metrics */}
         <StatsBar pageName={`${type}Detail`} partnerId={id}/>
@@ -199,8 +234,16 @@ function LocationDetailComponent() {
           <>
             <Separator />
             <div className='py-12 px-4 md:px-10 lg:px-20'>
-              <h3 className='font-bold text-lg md:text-2xl tracking-tight leading-tight px-12 pb-2'>{statSubtitle}</h3>
-              <p className='font-extralight tracking-tight leading-tight'>{statDescription}</p>
+              <h3 
+                ref={statSubtitleRef}
+                className={clsx(
+                  'font-bold text-fluid-xl tracking-tight leading-tight px-12 pb-2 animate-on-scroll',
+                  isStatSubtitleVisible && 'animate-fade-slide-up'
+                )}
+              >
+                {statSubtitle}
+              </h3>
+              <p className='font-extralight text-fluid-base tracking-tight leading-tight'>{statDescription}</p>
             </div>
           </>
         }
@@ -212,14 +255,22 @@ function LocationDetailComponent() {
           {/* Chart header with title and time range filters */}
           <article className='px-4 py-8 md:p-12 md:pb-0 text-center'>
             <div className='flex flex-col items-center gap-4'>
-              <h2 className='font-bold text-4xl tracking-tight pb-4'>Waste removed by action type</h2>
+              <h2 
+                ref={actionTypeHeadingRef}
+                className={clsx(
+                  'font-bold text-fluid-4xl tracking-tight leading-tight pb-4 animate-on-scroll',
+                  isActionTypeHeadingVisible && 'animate-fade-slide-up'
+                )}
+              >
+                Waste removed by action type
+              </h2>
               <div className="flex flex-row justify-center gap-1 md:gap-2">
                 {/* Time range filter buttons */}
                 {dateChoices.map((choice) => (
                   <Button
                     key={choice}
                     variant={selectedChartDates === choice ? 'default' : 'outline'}
-                    className='text-xs'
+                    className='text-fluid-xs'
                     onClick={() => setSelectedChartDates(choice)}
                   >
                     {choice}
@@ -260,10 +311,16 @@ function LocationDetailComponent() {
 
       {/* Attestations Section - Displays blockchain verification records */}
       <section className="flex flex-col gap-3 my-6 md:my-20 w-full md:w-[100%]">
-        <h2 className="font-bold text-3xl md:text-5xl tracking-tight">
+        <h2 
+          ref={attestationsHeadingRef}
+          className={clsx(
+            "font-bold text-fluid-4xl tracking-tight leading-tight animate-on-scroll",
+            isAttestationsHeadingVisible && 'animate-fade-slide-up'
+          )}
+        >
           Attestations
         </h2>
-        <p className="w-full md:w-[70%] font-extralight tracking-tight leading-tight md:leading-tight">
+        <p className="w-full md:w-[70%] font-extralight text-fluid-base tracking-tight leading-tight md:leading-tight">
           {attestationDescriptions[type]}
         </p>
         <Separator className="bg-softBlack my-1" />

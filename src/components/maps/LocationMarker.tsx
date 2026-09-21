@@ -1,9 +1,7 @@
 import { Marker, Popup } from 'react-leaflet'
 import { Link } from '@tanstack/react-router'
 import { Icon } from "leaflet"
-import { MoveRight } from 'lucide-react'
 import { MapItem } from '@/types'
-import { MAP_CONSTANTS } from '@/config/constants'
 import { useEffect } from 'react'
 
 /**
@@ -19,7 +17,7 @@ interface LocationMarkerProps {
  * 
  * Creates a map marker with a popup that displays:
  * - Location name with link to detail page
- * - Location type with appropriate icon
+ * - Location type (text only, no icon)
  * - Activity metrics (for product page maps)
  * 
  * Features:
@@ -30,12 +28,25 @@ interface LocationMarkerProps {
  * - Validation to prevent rendering markers with invalid coordinates
  */
 export const LocationMarker = ({ record }: LocationMarkerProps) => {
-  // Add styles for Leaflet popup shadow
+  // Add styles for Leaflet popup shadow and min-width
   useEffect(() => {
     const style = document.createElement('style')
     style.textContent = `
       .leaflet-popup-content-wrapper {
-        box-shadow: 10px 10px 45px -10px rgb(0 0 0 / 0.2) !important;
+        box-shadow: 15px 15px 45px -15px rgb(0 0 0 / 0.22) !important;
+        min-width: 200px !important;
+        border-radius: 24px !important;
+        border: 0.75px solid #BFBFBF !important;
+      }
+      .leaflet-popup-content {
+        margin: 24px !important;
+        min-width: 200px !important;
+      }
+      .leaflet-marker-icon {
+        cursor: pointer !important;
+      }
+      .leaflet-popup-tip {
+        display: none !important;
       }
     `
     document.head.appendChild(style)
@@ -54,7 +65,7 @@ export const LocationMarker = ({ record }: LocationMarkerProps) => {
     return null
   }
 
-  // Map the type to the correct icon filenames
+  // Map the type to the correct icon filename
   const getIconFilename = (type: string) => {
     const pinIcon = {
       manufacturer: 'map-pin-factory.svg',
@@ -62,24 +73,18 @@ export const LocationMarker = ({ record }: LocationMarkerProps) => {
       recycler: 'map-pin-recycler.svg'
     }[type.toLowerCase()] || 'map-pin-factory.svg';
 
-    const popupIcon = {
-      manufacturer: 'Manufacturer.svg',
-      port: 'Port.svg',
-      recycler: 'Recycler.svg'
-    }[type.toLowerCase()] || 'Manufacturer.svg';
-
-    return { pinIcon, popupIcon };
+    return pinIcon;
   }
 
-  const files = getIconFilename(type || '')
+  const pinIcon = getIconFilename(type || '')
 
   // Create custom marker icon based on location type
   const markerIcon = new Icon({
-    iconUrl: `/partner-icons/${files.pinIcon}`,
+    iconUrl: `/partner-icons/${pinIcon}`,
     iconSize: [40, 40],
     iconAnchor: [20, 40],
-    popupAnchor: [0, -24],
-    className: 'hover:scale-110 transition-transform duration-200'
+    popupAnchor: [0, -50],
+    className: 'cursor-pointer'
   })
 
   return (
@@ -88,48 +93,56 @@ export const LocationMarker = ({ record }: LocationMarkerProps) => {
       position={coordinates as [number, number]} // Use original coordinates
       icon={markerIcon} // Keep custom icon
     >
-      <Popup className="rounded-5xl px-2 py-2" closeButton={false}>
-        {/* Location name with link to detail page */}
-        <div className="min-w-[140px] max-w-[240px] flex-col justify-start items-start inline-flex">
-          <div className="self-stretch flex-col justify-start items-start flex mb-1">
-            {/* Type indicator with icon */}
-            <div className="h-8 self-stretch justify-start items-center inline-flex gap-2 mb-1">
-              <img 
-                src={`/partner-icons/${files.popupIcon}`} 
-                className='h-8 w-8' 
-                alt={`${type} icon`}
-                loading="lazy"
-              />
-              <p className='ml-1 text-base text-light'>{type}</p>
-            </div>
-            
+      <Popup className="rounded-3xl" closeButton={false}>
+        <div className="p-0 w-full relative inline-flex flex-col justify-start items-start gap-6">
+          {/* Location name and type section */}
+          <div className="self-stretch flex flex-col justify-start items-start gap-1">
             {/* Location name and arrow */}
-            <Link 
-              to="/locations/$id"
-              params={{ id }}
-              search={{ 
-                name,
-                country,
-                coordinates,
-                type,
-                addresses: wallet_addresses 
-              }}
-              className="w-full group"
-            >
-              <div className="h-10 flex items-center justify-between">
-                <p className='text-[hsl(var(--foreground))] text-2xl font-bold leading-none'>{name}</p>
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="flex-shrink-0 transition-transform group-hover:translate-x-0.5 ">
+            <div className="self-stretch inline-flex justify-between items-center gap-4">
+              <Link 
+                to="/locations/$id"
+                params={{ id }}
+                search={{ 
+                  name,
+                  country,
+                  coordinates,
+                  type,
+                  addresses: wallet_addresses 
+                }}
+                className="group flex-1"
+              >
+                <div className="justify-start text-[hsl(var(--foreground))] text-fluid-3xl font-bold">{name}</div>
+              </Link>
+              <Link 
+                to="/locations/$id"
+                params={{ id }}
+                search={{ 
+                  name,
+                  country,
+                  coordinates,
+                  type,
+                  addresses: wallet_addresses 
+                }}
+                className="group flex-shrink-0"
+              >
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="transition-transform group-hover:translate-x-0.5">
                   <path d="M21.3265 12.0001C21.3265 11.749 21.2261 11.5179 21.0251 11.3271L14.3756 4.68756C14.1546 4.46659 13.9336 4.38623 13.6925 4.38623C13.2004 4.38623 12.8187 4.74782 12.8187 5.25006C12.8187 5.49113 12.899 5.72213 13.0598 5.88289L15.3098 8.17304L18.6948 11.2567L16.264 11.1061H3.55751C3.04524 11.1061 2.67358 11.4777 2.67358 12.0001C2.67358 12.5224 3.04524 12.894 3.55751 12.894H16.264L18.7048 12.7434L15.3098 15.8271L13.0598 18.1172C12.899 18.2679 12.8187 18.509 12.8187 18.7501C12.8187 19.2523 13.2004 19.6139 13.6925 19.6139C13.9336 19.6139 14.1446 19.5235 14.3455 19.3327L21.0251 12.673C21.2261 12.4822 21.3265 12.2512 21.3265 12.0001Z" fill="#0D0D0D"/>
                 </svg>
-              </div>
-            </Link>
+              </Link>
+            </div>
+            {/* Location type text - no icon */}
+            <div className="self-stretch inline-flex justify-start items-center">
+              <div className="text-center justify-start text-[hsl(var(--foreground))] text-fluid-sm font-light capitalize">{type}</div>
+            </div>
           </div>
 
-          {/* Activity metrics section - only rendered if events data exists */}
+          {/* Actions section - only rendered if events data exists */}
           {events && (
-            <div className="self-stretch flex-col justify-start items-start flex mb-2">
-              <p className='text-[hsl(var(--foreground))] text-sm font-light leading-none mt-0'>Actions performed</p>
-              <div className="self-stretch flex-col justify-start items-start flex space-y-0.5">
+            <div className="self-stretch flex flex-col justify-start items-start gap-2.5">
+              <div className="self-stretch inline-flex justify-between items-start">
+                <div className="flex-1 justify-start text-[hsl(var(--foreground))] text-fluid-lg font-bold">Actions</div>
+              </div>
+              <div className="self-stretch flex flex-col justify-start items-start gap-1">
                 {Object.entries(events).map(([action, value]) => {
                   const actionColors: Record<string, string> = {
                     batch: 'bg-[hsl(var(--batch))]',
@@ -140,12 +153,12 @@ export const LocationMarker = ({ record }: LocationMarkerProps) => {
                   };
                   
                   return (
-                    <div key={action} className="h-4 self-stretch rounded-xl justify-between items-center inline-flex">
-                      <div className="flex items-center gap-1">
-                        <div className={`w-3 h-3 rounded-full gap-2 ${actionColors[action.toLowerCase()] || 'bg-gray-200'}`} />
-                        <p className='text-[hsl(var(--foreground))] text-base capitalize'>{action}</p>
+                    <div key={action} className="self-stretch pr-[5px] inline-flex justify-between items-start">
+                      <div className="flex justify-start items-center gap-1">
+                        <div className={`w-4 h-4 rounded-full ${actionColors[action.toLowerCase()] || 'bg-gray-200'}`} />
+                        <div className="justify-start text-[hsl(var(--foreground))] text-fluid-lg font-medium capitalize">{action}</div>
                       </div>
-                      <p className='text-right text-[hsl(var(--foreground))] text-base font-bold'>{value}</p>
+                      <div className="text-right justify-start text-[hsl(var(--foreground))] text-fluid-lg font-medium">{value}</div>
                     </div>
                   );
                 })}
@@ -153,14 +166,15 @@ export const LocationMarker = ({ record }: LocationMarkerProps) => {
             </div>
           )}
         </div>
-        {/* Custom popup arrow */}
-        <div className="relative">
-          <svg className="absolute left-1/2 -translate-x-1/2 -bottom-4" width="20" height="8" viewBox="0 0 20 8" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M10 8L0 0H20L10 8Z" fill="white"/>
-            <path d="M10 7L1 0H19L10 7Z" fill="#F7F5F2"/>
+        {/* Custom popup pointer - positioned outside content wrapper */}
+        <div className="absolute left-1/2 -translate-x-1/2 pointer-events-none" style={{ bottom: '-20px', zIndex: 2 }}>
+          <svg width="42" height="21" viewBox="0 0 42 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M17.2021 18.6239C19.1068 20.5759 22.2456 20.5758 24.1504 18.6239L39.9912 2.3915H1.36426L17.2021 18.6239ZM23.6133 18.1005C22.0028 19.7504 19.3496 19.7505 17.7393 18.1005L3.14355 3.1415H38.2119L23.6133 18.1005Z" fill="#BFBFBF"/>
+            <path d="M17.7453 18.1171C19.3546 19.7602 21.9998 19.7602 23.6091 18.1171L41.3545 0H0L17.7453 18.1171Z" fill="#FFFFFF"/>
           </svg>
         </div>
       </Popup>
     </Marker>
+    
   )
 }

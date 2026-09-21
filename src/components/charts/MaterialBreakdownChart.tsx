@@ -9,6 +9,8 @@ import {
 import { MaterialsChartConfig } from '@/config/charts';
 import { MaterialBreakdownData, MaterialBreakdownItem } from '@/hooks/api/useHomeMaterialBreakdown';
 import { ChartConfig } from "@/components/ui/chart";
+import { useIntersectionObserver } from '@/hooks/ui/useIntersectionObserver';
+import { clsx } from 'clsx';
 
 // Helper to map API material names to config keys
 const getMaterialConfigKey = (materialName: string): string => {
@@ -84,7 +86,7 @@ const HoverTooltip = ({ hoveredKey, data }: { hoveredKey: string | null; data: M
 
   // Final tooltip style (compact, rounded-full)
   return (
-    <div className="w-auto bg-white py-2 px-4 rounded-full shadow-lg flex items-center justify-between space-x-4 whitespace-nowrap">
+    <div className="w-auto bg-white rounded-full flex items-center justify-between space-x-4 whitespace-nowrap" style={{ border: '0.75px solid #BFBFBF', boxShadow: '15px 15px 45px -15px rgb(0 0 0 / 0.22)', padding: '12px 24px' }}>
       <div className="flex items-center gap-2">
         <div
           className="w-5 h-5 rounded-full flex-shrink-0"
@@ -105,6 +107,13 @@ export const MaterialBreakdownChart: React.FC<MaterialBreakdownChartProps> = ({ 
   const [mousePosition, setMousePosition] = useState<{ x: number; y: number; containerWidth: number } | null>(null);
   // Ref for the chart container div
   const chartContainerRef = useRef<HTMLDivElement>(null);
+
+  // Intersection Observer for scroll-triggered animation
+  const [headingRef, isHeadingVisible] = useIntersectionObserver({
+    threshold: 0.1,
+    rootMargin: '0px',
+    triggerOnce: true,
+  });
 
   const chartData = [
     data.breakdown.reduce((acc: { [key: string]: number }, item: MaterialBreakdownItem) => {
@@ -160,13 +169,21 @@ export const MaterialBreakdownChart: React.FC<MaterialBreakdownChartProps> = ({ 
   }
 
   return (
-    <div className="self-stretch rounded-[40px] flex flex-col justify-start items-start gap-8"> 
+    <div className="self-stretch rounded-[40px] flex flex-col justify-start items-start space-fluid-xl"> 
       {/* Title and Description Container */}
-      <div className="self-stretch px-4 md:px-10 lg:px-12 pt-2 text-center"> 
-        <h2 className="text-black font-bold text-4xl tracking-tight pb-2">{title}</h2>
+      <div className="self-stretch px-4 md:px-10 lg:px-12 pt-fluid-lg text-center"> 
+        <h2 
+          ref={headingRef}
+          className={clsx(
+            "text-black font-bold text-fluid-4xl tracking-tight leading-tight pb-fluid-md animate-on-scroll",
+            isHeadingVisible && 'animate-fade-slide-up'
+          )}
+        >
+          {title}
+        </h2>
         {/* Description moved here */}
         {description && (
-          <div className="text-xl md:text-xl font-extralight tracking-tight leading-tight md:px-12">
+          <div className="text-fluid-xl font-extralight tracking-tight leading-tight md:px-12 pt-fluid-sm">
             {description}
           </div>
         )}
@@ -225,7 +242,7 @@ export const MaterialBreakdownChart: React.FC<MaterialBreakdownChartProps> = ({ 
       {/* Outer container for padding */}
       <div className="self-stretch py-8 px-4 md:px-12">
         {/* Legend Layout: 2-col grid mobile, centered flex wrap desktop */}
-        <div className="max-w-screen-lg mx-auto grid grid-cols-2 justify-items-start md:flex md:flex-wrap md:justify-center gap-x-12 gap-y-12"> 
+        <div className="max-w-screen-lg xl:max-w-[1400px] 2xl:max-w-[1600px] mx-auto grid grid-cols-2 justify-items-start md:flex md:flex-wrap md:justify-center gap-x-12 gap-y-12"> 
           {allMaterialsForLegend.map((item: MaterialBreakdownItem) => {
             const configKey = getMaterialConfigKey(item.material);
             const colorEntry = MaterialsChartConfig[configKey as keyof typeof MaterialsChartConfig];
@@ -237,10 +254,10 @@ export const MaterialBreakdownChart: React.FC<MaterialBreakdownChartProps> = ({ 
                   style={{ backgroundColor: color }}
                 />
                 <div className="inline-flex flex-col justify-start items-start gap-1">
-                  <span className="text-black text-base font-light leading-normal">{item.material}</span> 
+                  <span className="text-black text-fluid-base font-light leading-normal">{item.material}</span> 
                   <div className="inline-flex justify-start items-baseline gap-0.5">
-                    <span className="text-black text-xl font-bold leading-tight">{new Intl.NumberFormat().format(item.weight)}</span> 
-                    <span className="text-black text-base  leading-tight">Kg</span> 
+                    <span className="text-black text-fluid-xl font-bold leading-tight">{new Intl.NumberFormat().format(item.weight)}</span> 
+                    <span className="text-black text-fluid-base leading-tight">Kg</span> 
                   </div>
                 </div>
               </div>
