@@ -1,15 +1,17 @@
 
-# Enaleia Public Dashboard
+# Field Traceability & Impact Dashboard
 
-This dashboard uses the Pollen Labs blokFlow technology to help Enaleia’s environmental efforts transparent and easily understandable, empowering public engagement in marine conservation.
+This dashboard, in tandem with the Field Traceability Mobile Client, helps marine waste collectors, recyclers, and manufacturers share their environmental efforts transparently in an easy-to-understand way while empowering public engagement in marine conservation.
+### Project demonstration
+A real-world project demonstration is available through the [Field Traceability & Impact Dashboard]((https://youtu.be/P9QTiQ37r1I)).
 
 ## Features
 
 ### Within the dashboard, users can
 
-- View Enaleia's locations of operation and materials collected
-- Examine collection and processing details by date, location, and fishing vessel
-- Trace the provenance of Enaleia's recycled product offering
+- View participants’ locations of operation and materials collected.
+- Examine collection and processing details by date and location.
+- Trace the provenance of the manufacturers’ recycled products.
 
 
 ## Tech Stack
@@ -25,11 +27,6 @@ This dashboard uses the Pollen Labs blokFlow technology to help Enaleia’s envi
 
 ## Run Locally
 
-#### Clone the repository
-
-```bash
- git clone git@github.com:Pollen-labs/BFlow.git
-```
 
 #### Install dependencies
 
@@ -47,5 +44,8 @@ Open [http://localhost:3001](http://localhost:3001) with your browser to see the
 
 ----
 
-Copyright © 2024-2025 Pollen Lab.
-BFlow™️ technology is an intellectual property of Pollen Labs.
+## License
+
+This project is licensed under the GNU Affero General Public License v3.0. See [LICENSE](LICENSE.md).
+
+Copyright © 2024-2026 Pollen Labs.

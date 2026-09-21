@@ -92,7 +92,7 @@ const NavFooter = () => {
         </div>
 
         {/* Bottom row: Pollen Labs credit */}
-        <div className="flex flex-col items-center gap-2 border-t border-softBlack pt-4 text-center md:flex-row md:items-center md:justify-between md:text-left">
+        <div className="flex flex-col items-center gap-2 border-t border-softBlack pt-4 text-center md:flex-row md:items-center md:justify-center">
           <p className="text-fluid-sm font-extralight">
             Conceptualised and built by
           </p>

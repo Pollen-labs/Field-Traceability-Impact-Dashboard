@@ -225,10 +225,10 @@ export const aboutPageTexts = {
   heroTitle: 'Transparency & accountability on a decentralized network.',
   heroDescription: 'Enaleia Hub is a step toward a sustainable Mediterranean sea while fostering trust in the data that drives our clean-up efforts.',
   hubFlowSectionTitle: 'How does Enaleia Hub work?',
-  hubFlowSectionDescription: 'The Hub provide transparent data visualization and traceability while also streamlining operational workflows for Enaleia and its supply-chain partners. Powered by BFlow technology which leverages blockchain to enhances transparency and efficiency in tracking and managing environmental efforts, the Hub integrates multiple interfaces to support ourselves and our partners in submitting permanent attestations. It empowers us and our community to contribute data to a true sustainable future.',
+  hubFlowSectionDescription: 'The Hub provides transparent data visualization and traceability while streamlining workflows across supply chains. Powered by Pollen Labs traceability technology, it uses blockchain-based attestations to improve transparency, coordination, and accountability in environmental operations. The Hub enables partners to record, review, and verify traceability events across collection, processing, and manufacturing workflows.',
   collabSectionTitle: 'Pollen Labs for impact',
-  collabSectionDescription1: '**BFlow, the technology which powers Enaleia hub, was entirely conceptualized and developed by Pollen Labs.** BFlow aim to improve transparency of supply chains through decentralized data capture.  Our vision extends beyond this project as we envision enterprises striving in transparency through the adoption of sustainable technologies',
-  collabSectionDescription2: '<strong>We invite mission-aligned enterprises to <a href="mailto:contact@pollenlabs.org" style="text-decoration: underline; font-weight: 500;">contact us</a> and explore how we can build impactful, transparent solutions together.</strong>'
+  collabSectionDescription1: 'The Hub is powered by Pollen Labs traceability technology, designed to improve supply-chain transparency through decentralized data capture. Pollen Labs’ vision extends beyond this project: helping organizations build more transparent, accountable supply chains through sustainable technology.',
+  collabSectionDescription2: '<strong>We invite mission-aligned enterprises to <a href="mailto:hello@pollenlabs.org" style="text-decoration: underline; font-weight: 500;">contact us</a> and explore how we can build impactful, transparent solutions together.</strong>'
 }
 
 /**
@@ -257,7 +257,7 @@ export const aboutCardInfo = [
   {
     image: 'crab',
     title: 'Demonstrate transparency',
-    description: 'The public dashboard is a critical tool for showcasing transparency and highlighting the impact of our efforts.  Additionnaly each data submission is stored on the blockchain in a human-readable format. This also ensures that future marine scientists or environmentalists can reference historical data for research.<br/><br/> The hub use <a href="https://attest.org/" target="_blank" rel="noopener noreferrer"style="font-weight: bold">Ethereum Attestation Service</a> to store this data permanently. <br/><br/> How to read the data we attested? Discover Enaleia Hub <a href="https://optimism.easscan.org/schema/view/0x1ac0face1fc9aabf1c2f9b46d3a8decb51ca0c3d06ef1f68a85d04c90820975b" target="_blank" rel="noopener noreferrer" style="font-weight: bold">attestation schema</a>.<br/><br/> ',
+    description: 'The public dashboard is a critical tool for showcasing transparency and highlighting the impact of our efforts. Additionally, each data submission is stored on the blockchain in a human-readable format. This also ensures that future marine scientists or environmentalists can reference historical data for research.<br/><br/> The hub uses <a href="https://attest.org/" target="_blank" rel="noopener noreferrer" style="font-weight: bold">Ethereum Attestation Service</a> to store this data permanently. <br/><br/> How to read the data we attested? Discover Enaleia Hub\'s <a href="https://optimism.easscan.org/schema/view/0x1ac0face1fc9aabf1c2f9b46d3a8decb51ca0c3d06ef1f68a85d04c90820975b" target="_blank" rel="noopener noreferrer" style="font-weight: bold">attestation schema</a>.<br/><br/> ',
   }
 ]
 
@@ -274,7 +274,7 @@ export const aboutPageLinks = [
   },
   {
     text: 'Github',
-    url: 'https://github.com/Pollen-labs/BFlow'
+    url: 'https://github.com/Pollen-labs/Enaleia-dashboard'
   },
   {
     text: 'Chat with us on Discord',

@@ -148,7 +148,7 @@ const ActivityMap = ({ pageName, partnerType, productId }: ActivityMapProps) => 
   if (error) {
     return (
       <article className='w-full h-[400px] md:h-[500px] lg:h-[1200px] pt-3 text-center flex flex-col justify-center items-center'>
-        <p className="text-lg">An error has occurred: {error.message}</p>
+        <p className="text-fluid-lg">An error has occurred: {error.message}</p>
       </article>
     )
   }
@@ -194,7 +194,7 @@ const ActivityMap = ({ pageName, partnerType, productId }: ActivityMapProps) => 
             <LocationMarker key={record.id} record={record} />
         ))
         : 
-          <div className='flex flex-col text-center text-lg md:text-2xl font-semibold px-20 pt-28 md:pt-72'>
+          <div className='flex flex-col text-center text-fluid-xl font-semibold px-20 pt-28 md:pt-72'>
             <p>sorry!</p>
             <p>We aren't able to mark our locations right now.</p>
           </div>

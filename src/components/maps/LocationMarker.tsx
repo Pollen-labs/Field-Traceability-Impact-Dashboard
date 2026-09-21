@@ -111,7 +111,7 @@ export const LocationMarker = ({ record }: LocationMarkerProps) => {
                 }}
                 className="group flex-1"
               >
-                <div className="justify-start text-[hsl(var(--foreground))] text-3xl font-bold leading-7">{name}</div>
+                <div className="justify-start text-[hsl(var(--foreground))] text-fluid-3xl font-bold">{name}</div>
               </Link>
               <Link 
                 to="/locations/$id"
@@ -132,7 +132,7 @@ export const LocationMarker = ({ record }: LocationMarkerProps) => {
             </div>
             {/* Location type text - no icon */}
             <div className="self-stretch inline-flex justify-start items-center">
-              <div className="text-center justify-start text-[hsl(var(--foreground))] text-sm font-light leading-4 capitalize">{type}</div>
+              <div className="text-center justify-start text-[hsl(var(--foreground))] text-fluid-sm font-light capitalize">{type}</div>
             </div>
           </div>
 
@@ -140,7 +140,7 @@ export const LocationMarker = ({ record }: LocationMarkerProps) => {
           {events && (
             <div className="self-stretch flex flex-col justify-start items-start gap-2.5">
               <div className="self-stretch inline-flex justify-between items-start">
-                <div className="flex-1 justify-start text-[hsl(var(--foreground))] text-lg font-bold leading-5">Actions</div>
+                <div className="flex-1 justify-start text-[hsl(var(--foreground))] text-fluid-lg font-bold">Actions</div>
               </div>
               <div className="self-stretch flex flex-col justify-start items-start gap-1">
                 {Object.entries(events).map(([action, value]) => {
@@ -156,9 +156,9 @@ export const LocationMarker = ({ record }: LocationMarkerProps) => {
                     <div key={action} className="self-stretch pr-[5px] inline-flex justify-between items-start">
                       <div className="flex justify-start items-center gap-1">
                         <div className={`w-4 h-4 rounded-full ${actionColors[action.toLowerCase()] || 'bg-gray-200'}`} />
-                        <div className="justify-start text-[hsl(var(--foreground))] text-lg font-medium leading-5 capitalize">{action}</div>
+                        <div className="justify-start text-[hsl(var(--foreground))] text-fluid-lg font-medium capitalize">{action}</div>
                       </div>
-                      <div className="text-right justify-start text-[hsl(var(--foreground))] text-lg font-medium leading-5">{value}</div>
+                      <div className="text-right justify-start text-[hsl(var(--foreground))] text-fluid-lg font-medium">{value}</div>
                     </div>
                   );
                 })}

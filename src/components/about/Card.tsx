@@ -33,10 +33,10 @@ const Card = ({ image, title, description }: CardProps) => {
       {/* Content container with title and description */}
       <div className="pb-8 pl-6 pr-3 text-left">
         {/* Card title */}
-        <h3 className="font-semibold text-xl md:text-xl tracking-tight pb-2">{title}</h3>
+        <h3 className="font-semibold text-xl tracking-tight pb-2">{title}</h3>
         {/* Description with HTML support */}
         {/* Note: dangerouslySetInnerHTML is used to support links and formatting in the description */}
-        <p className="font-extralight text-base tracking-tight leading-tight md:leading-tight" dangerouslySetInnerHTML={{__html: description}}></p>
+        <p className="font-extralight text-lg tracking-tight" dangerouslySetInnerHTML={{__html: description}}></p>
       </div>
     </article>
   )
