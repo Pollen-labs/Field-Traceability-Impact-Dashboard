@@ -274,7 +274,7 @@ export const aboutPageLinks = [
   },
   {
     text: 'Github',
-    url: 'https://github.com/Pollen-labs/Enaleia-dashboard'
+    url: 'https://github.com/Pollen-labs/Field-Traceability-Impact-Dashboard'
   },
   {
     text: 'Chat with us on Discord',
