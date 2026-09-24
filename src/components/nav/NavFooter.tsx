@@ -37,7 +37,7 @@ const FooterNavLinks = () => {
         About
       </Link>
       <a
-        href="https://github.com/Pollen-labs/BFlow"
+        href="https://github.com/Pollen-labs/Field-Traceability-Impact-Dashboard"
         target="_blank"
         rel="noopener noreferrer"
         className="group"
