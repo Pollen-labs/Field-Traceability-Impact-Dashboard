@@ -242,7 +242,7 @@ export const aboutCardInfo = [
   {
     image: 'turtle',
     title: 'Log waste collection at the port',
-    description: 'Using the mobile app, each port coordinator employed by Enaleia records and submits data directly to the blockchain. The mobile app operates as a distributed node, with each user having their own account (wallet) to interact securely with the blockchain.<br/><br/> If you are interested to learn more about Pollen Labs technology, please visit the <a href="https://github.com/Pollen-labs/BFlow" target="_blank" rel="noopener noreferrer" style="font-weight: bold">repository</a>.',
+    description: 'Using the mobile app, each port coordinator employed by Enaleia records and submits data directly to the blockchain. The mobile app operates as a distributed node, with each user having their own account (wallet) to interact securely with the blockchain.<br/><br/> If you are interested to learn more about Pollen Labs technology, please visit the <a href="https://github.com/Pollen-labs/Field-Traceability-Impact-Dashboard" target="_blank" rel="noopener noreferrer" style="font-weight: bold">repository</a>.',
   },
   {
     image: 'fish',
